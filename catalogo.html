@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catalogue | L'Élégance</title>
+    <!-- Tailwind CSS CDN Puro -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- SCHEMA.ORG: DATOS ESTRUCTURADOS PARA EL CATÁLOGO (Requerido en image_03413f.png) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Catalogue de la Collection - L'Élégance",
+      "numberOfItems": 15,
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "url": "producto.html"
+        }
+      ]
+    }
+    </script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+
+    <!-- NAVBAR REUTILIZABLE -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
+            
+            <div class="hidden md:flex flex-1 max-w-md mx-4">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Rechercher..." class="w-full bg-gray-100 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-black">
+                    <span class="absolute left-3 top-2.5 text-gray-400">🔍</span>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
+                    <option value="fr">FR 🇫🇷</option>
+                    <option value="es">ES 🇪🇸</option>
+                </select>
+            </div>
+
+            <nav class="flex items-center gap-6 text-sm font-medium">
+                <a href="catalogo.html" data-translate="nav_catalogue" class="text-black underline font-semibold">Catalogue</a>
+                <a href="carrito.html" class="relative hover:text-gray-500 transition">
+                    <span data-translate="nav_panier">Panier</span> 🛒
+                    <span class="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL SEMÁNTICO -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-grow">
+        <h1 data-translate="cat_title" class="text-3xl font-serif mb-8 text-black font-bold">Catalogue de la Collection</h1>
+
+        <!-- BARRA DE FILTROS -->
+        <section class="bg-white p-4 border border-gray-200 rounded-lg flex flex-wrap gap-4 justify-between items-center mb-8 shadow-sm" aria-label="Filtres de recherche">
+            <div class="flex flex-wrap gap-4">
+                <select class="bg-gray-100 border-none text-sm rounded-md px-3 py-2 text-gray-700 focus:ring-1 focus:ring-black">
+                    <option data-translate="filter_cat" value="">Toutes les catégories</option>
+                </select>
+                <select class="bg-gray-100 border-none text-sm rounded-md px-3 py-2 text-gray-700 focus:ring-1 focus:ring-black">
+                    <option data-translate="filter_size" value="">Toutes les tailles</option>
+                </select>
+            </div>
+            <div data-translate="grid_count" class="text-xs text-gray-400 font-medium">15 produits référencés</div>
+        </section>
+
+        <!-- REJILLA RESPONSIVA SIN SCROLL HORIZONTAL (Evita fallos en móvil) -->
+        <section id="products-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <!-- Renderizado dinámico vía JS -->
+        </section>
+    </main>
+
+    <!-- FOOTER SEMÁNTICO -->
+    <footer class="bg-white border-t border-gray-200 mt-auto text-sm text-gray-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 data-translate="footer_cat" class="text-black font-semibold uppercase tracking-wider mb-4">Catégories</h3>
+                <ul class="space-y-2">
+                    <li><a href="catalogo.html" data-translate="cat_1">Chaussures</a></li>
+                    <li><a href="catalogo.html" data-translate="cat_2">Chemises</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 data-translate="footer_info" class="text-black font-semibold uppercase tracking-wider mb-4">Informations</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" data-translate="info_1">À propos de la marque</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-black font-semibold uppercase tracking-wider mb-4">Contact</h3>
+                <p class="font-medium text-black">Email: contact@lelegance.fr</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const products = [
+            { id: 1, ref: "LE-1001", price: "79,00 €", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500&q=80", key: "prod_1" },
+            { id: 2, ref: "LE-1002", price: "149,00 €", img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=500&q=80", key: "prod_2" },
+            { id: 3, ref: "LE-1003", price: "95,00 €", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=500&q=80", key: "prod_3" },
+            { id: 4, ref: "LE-1004", price: "35,00 €", img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=500&q=80", key: "prod_4" },
+            { id: 5, ref: "LE-1005", price: "120,00 €", img: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=500&q=80", key: "prod_5" },
+            { id: 6, ref: "LE-1006", price: "110,00 €", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80", key: "prod_6" },
+            { id: 7, ref: "LE-1007", price: "65,00 €", img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500&q=80", key: "prod_7" },
+            { id: 8, ref: "LE-1008", price: "180,00 €", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80", key: "prod_8" },
+            { id: 9, ref: "LE-1009", price: "45,00 €", img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=500&q=80", key: "prod_9" },
+            { id: 10, ref: "LE-1010", price: "135,00 €", img: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=500&q=80", key: "prod_10" },
+            { id: 11, ref: "LE-1011", price: "55,00 €", img: "https://images.unsplash.com/photo-1554568218-0f1715e72254?auto=format&fit=crop&w=500&q=80", key: "prod_11" },
+            { id: 12, ref: "LE-1012", price: "160,00 €", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80", key: "prod_12" },
+            { id: 13, ref: "LE-1013", price: "40,00 €", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80", key: "prod_13" },
+            { id: 14, ref: "LE-1014", price: "195,00 €", img: "https://images.unsplash.com/photo-1548624149-f7b316030d81?auto=format&fit=crop&w=500&q=80", key: "prod_14" },
+            { id: 15, ref: "LE-1015", price: "70,00 €", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=80", key: "prod_15" }
+        ];
+
+        const translations = {
+            fr: {
+                nav_catalogue: "Catalogue", nav_panier: "Panier", cat_title: "Catalogue de la Collection", filter_cat: "Toutes les catégories", filter_size: "Toutes les tailles", grid_count: "15 produits référencés", footer_cat: "Catégories", footer_info: "Informations", cat_1: "Chaussures", cat_2: "Chemises", info_1: "À propos de la marque",
+                prod_1: "Chemise Lin Classique", prod_2: "Veste Blazer Moderne", prod_3: "Pantalon Chino Beige", prod_4: "T-Shirt Minimaliste", prod_5: "Pull en Laine Tricoté", prod_6: "Robe d'Été Fleurie", prod_7: "Sweat-shirt Urbain", prod_8: "Manteau Long d'Hiver", prod_9: "Chapeau de Paille Élégant", prod_10: "Blouse en Soie Blanche", prod_11: "T-Shirt Graphique Pur", prod_12: "Jeans Slim Ajusté", prod_13: "Casquette Coton Basique", prod_14: "Veste en Cuir Véritable", prod_15: "Jupe Plissée Moderne"
+            },
+            es: {
+                nav_catalogue: "Catálogo", nav_panier: "Carrito", cat_title: "Catálogo de la Colección", filter_cat: "Todas las categorías", filter_size: "Todas las tallas", grid_count: "15 productos visibles", footer_cat: "Categorías", footer_info: "Información", cat_1: "Calzado", cat_2: "Camisas", info_1: "Sobre la marca",
+                prod_1: "Camisa de Lino Clásica", prod_2: "Chaqueta Blazer Moderna", prod_3: "Pantalón Chino Beige", prod_4: "Camiseta Minimalista", prod_5: "Suéter de Lana Tejido", prod_6: "Vestido de Verano Floreado", prod_7: "Sudadera Urbana Casual", prod_8: "Abrigo Largo de Invierno", prod_9: "Sombrero de Paja Elegante", prod_10: "Blusa de Seda Blanca", prod_11: "Camiseta Gráfica Pura", prod_12: "Jeans Slim Ajustados", prod_13: "Gorra de Algodón Básica", prod_14: "Chaqueta de Cuero Genuino", prod_15: "Falta Plisada Moderna"
+            }
+        };
+
+        function renderGrid(lang) {
+            const container = document.getElementById('products-grid');
+            container.innerHTML = '';
+            products.forEach(p => {
+                const productName = translations[lang][p.key];
+                container.innerHTML += `
+                    <article class="bg-white p-3 border border-gray-100 rounded-lg group shadow-sm">
+                        <a href="producto.html" class="block space-y-3">
+                            <div class="bg-gray-100 aspect-[3/4] overflow-hidden rounded-md">
+                                <img src="${p.img}" alt="${productName}" width="240" height="320" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy">
+                            </div>
+                            <div>
+                                <h2 class="font-medium text-sm text-gray-900">${productName}</h2>
+                                <p class="text-xs text-gray-400 mt-1">Réf: ${p.ref}</p>
+                                <p class="text-sm font-semibold text-black mt-2">${p.price}</p>
+                            </div>
+                        </a>
+                    </article>
+                `;
+            });
+        }
+
+        function changeLanguage(lang) {
+            document.getElementById('html-tag').setAttribute('lang', lang);
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            renderGrid(lang);
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
