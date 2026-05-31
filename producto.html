@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produit | L'Élégance</title>
+    <!-- Tailwind CSS CDN Puro -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- SCHEMA.ORG: DATOS ESTRUCTURADOS DE PRODUCTO (Requerido en image_03413f.png) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org/",
+      "@type": "Product",
+      "name": "Chemise en Lin Élégante",
+      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
+      "description": "Confectionnée dans un lin de qualité supérieure, cette chemise incarne l'équilibre parfait entre confort estival et raffinement.",
+      "sku": "LE-1005",
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "EUR",
+        "price": "85.00",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+
+    <!-- NAVBAR REUTILIZABLE -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
+            
+            <div class="hidden md:flex flex-1 max-w-md mx-4">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Rechercher..." class="w-full bg-gray-100 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-black">
+                    <span class="absolute left-3 top-2.5 text-gray-400">🔍</span>
+                </div>
+            </div>
+
+            <div class="flex items-center">
+                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
+                    <option value="fr">FR 🇫🇷</option>
+                    <option value="es">ES 🇪🇸</option>
+                </select>
+            </div>
+
+            <nav class="flex items-center gap-6 text-sm font-medium">
+                <a href="catalogo.html" data-translate="nav_catalogue" class="hover:text-gray-500 transition">Catalogue</a>
+                <a href="carrito.html" class="relative hover:text-gray-500 transition">
+                    <span data-translate="nav_panier">Panier</span> 🛒
+                    <span class="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- DOS COLUMNAS SEMÁNTICAS -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start mb-12">
+            
+            <!-- Columna Izquierda: Imagen (Con Lazy Loading para rendimiento) -->
+            <section aria-label="Galerie photo" class="bg-gray-100 aspect-[3/4] rounded-xl overflow-hidden shadow-sm">
+                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80" 
+                     alt="Chemise Élégante en Lin" width="600" height="800"
+                     class="w-full h-full object-cover" loading="lazy">
+            </section>
+
+            <!-- Columna Derecha: Datos Obligatorios -->
+            <section aria-label="Détails du produit" class="space-y-6">
+                <div>
+                    <h1 data-translate="prod_name" class="text-3xl font-serif font-bold text-black mb-2">Chemise en Lin Élégante</h1>
+                    <p class="text-xs text-gray-400 font-mono">CODE: <span id="prod-code">LE-1005</span></p>
+                </div>
+
+                <div class="border-b border-gray-100 pb-4">
+                    <p class="text-2xl font-bold text-black">85,00 €</p>
+                </div>
+
+                <form class="space-y-4" onsubmit="alert('Ajouté au panier'); return false;">
+                    <div>
+                        <label data-translate="label_size" class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Taille</label>
+                        <select required class="w-full max-w-xs bg-white border border-gray-200 rounded-md p-2.5 text-sm outline-none focus:ring-1 focus:ring-black">
+                            <option value="S">S</option>
+                            <option value="M" selected>M</option>
+                            <option value="L">L</option>
+                            <option value="XL">XL</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label data-translate="label_qty" class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Quantité</label>
+                        <input type="number" min="1" max="10" value="1" required class="w-20 bg-white border border-gray-200 rounded-md p-2.5 text-sm text-center outline-none focus:ring-1 focus:ring-black">
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" data-translate="btn_add" class="w-full max-w-md bg-black text-white py-4 font-medium uppercase tracking-wider text-sm hover:bg-gray-900 transition rounded-md shadow-sm">
+                            Ajouter au panier
+                        </button>
+                    </div>
+                </form>
+            </section>
+        </div>
+
+        <hr class="border-gray-200 my-8">
+        
+        <!-- Descripción -->
+        <section class="max-w-3xl">
+            <h2 data-translate="desc_title" class="text-xl font-serif font-bold text-black mb-4">Description du produit</h2>
+            <div data-translate="desc_content" class="text-sm text-gray-600 leading-relaxed space-y-3">
+                <p>Confectionnée dans un lin de qualité supérieure, cette chemise incarne l'équilibre parfait entre confort estival et raffinement intemporel.</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER REUTILIZABLE -->
+    <footer class="bg-white border-t border-gray-200 mt-auto text-sm text-gray-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 data-translate="footer_cat" class="text-black font-semibold uppercase tracking-wider mb-4">Catégories</h3>
+                <ul class="space-y-2">
+                    <li><a href="catalogo.html" data-translate="cat_1">Chaussures</a></li>
+                    <li><a href="catalogo.html" data-translate="cat_2">Chemises</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 data-translate="footer_info" class="text-black font-semibold uppercase tracking-wider mb-4">Informations</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" data-translate="info_1">À propos de la marque</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-black font-semibold uppercase tracking-wider mb-4">Contact</h3>
+                <p class="font-medium text-black">Email: contact@lelegance.fr</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: { nav_catalogue: "Catalogue", nav_panier: "Panier", prod_name: "Chemise en Lin Élégante", label_size: "Taille", label_qty: "Quantité", btn_add: "Ajouter au panier", desc_title: "Description du produit", desc_content: "Confectionnée dans un lin de qualité supérieure, cette chemise incarne l'équilibre parfait entre confort estival et raffinement intemporel.", footer_cat: "Catégories", footer_info: "Informations", cat_1: "Chaussures", cat_2: "Chemises", info_1: "À propos de la marque" },
+            es: { nav_catalogue: "Catálogo", nav_panier: "Carrito", prod_name: "Camisa de Lino Elegante", label_size: "Talla", label_qty: "Cantidad", btn_add: "Añadir al carrito", desc_title: "Descripción del producto", desc_content: "Confeccionada con lino de la más alta calidad, esta camisa encarna el equilibrio perfecto entre la comodidad veraniega y el refinamiento atemporal.", footer_cat: "Categorías", footer_info: "Información", cat_1: "Calzado", cat_2: "Camisas", info_1: "Sobre la marca" }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('html-tag').setAttribute('lang', lang);
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

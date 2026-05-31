@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | L'Élégance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
+            <div class="flex items-center">
+                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
+                    <option value="fr">FR 🇫🇷</option>
+                    <option value="es">ES 🇪🇸</option>
+                </select>
+            </div>
+            <nav class="flex items-center gap-6 text-sm font-medium">
+                <a href="catalogo.html" data-translate="nav_catalogue">Catalogue</a>
+                <a href="carrito.html" class="relative hover:text-gray-500 transition"><span data-translate="nav_panier">Panier</span> 🛒</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-3xl mx-auto px-4 sm:px-6 py-12 w-full flex-grow">
+        <nav class="mb-10" aria-label="Étapes du paiement">
+            <ul class="flex items-center justify-between text-xs font-bold uppercase tracking-wider text-gray-400 max-w-md mx-auto">
+                <li class="text-black" data-translate="step_1">1. Personnels</li>
+                <li class="text-black" data-translate="step_2">2. Livraison</li>
+                <li class="text-black" data-translate="step_3">3. Paiement</li>
+            </ul>
+        </nav>
+
+        <form class="bg-white p-6 sm:p-10 border border-gray-200 rounded-xl space-y-8 shadow-sm" onsubmit="alert('Merci / ¡Gracias!'); return false;">
+            <fieldset class="space-y-4">
+                <legend data-translate="step_1_title" class="text-lg font-serif font-bold text-black">1. Informations Personnelles</legend>
+                <input type="text" placeholder="Nom Complet" required class="w-full bg-gray-50 border border-gray-200 rounded-md p-2.5 text-sm outline-none focus:ring-1 focus:ring-black">
+            </fieldset>
+
+            <hr class="border-gray-100">
+
+            <fieldset class="space-y-4">
+                <legend data-translate="step_2_title" class="text-lg font-serif font-bold text-black">2. Adresse de Livraison</legend>
+                <input type="text" placeholder="Adresse complète de livraison" required class="w-full bg-gray-50 border border-gray-200 rounded-md p-2.5 text-sm outline-none focus:ring-1 focus:ring-black">
+            </fieldset>
+
+            <hr class="border-gray-100">
+
+            <fieldset class="space-y-4">
+                <legend data-translate="step_3_title" class="text-lg font-serif font-bold text-black">3. Informations de Paiement</legend>
+                <input type="text" placeholder="Numéro de carte (16 chiffres)" required class="w-full bg-gray-50 border border-gray-200 rounded-md p-2.5 text-sm outline-none focus:ring-1 focus:ring-black">
+            </fieldset>
+
+            <button type="submit" data-translate="confirm_btn" class="w-full bg-black text-white py-4 font-medium uppercase tracking-wider text-sm hover:bg-gray-900 transition rounded-md">
+                Confirmer le Paiement (292,80 €)
+            </button>
+        </form>
+    </main>
+
+    <footer class="bg-white border-t border-gray-200 mt-auto text-sm text-gray-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 data-translate="footer_cat" class="text-black font-semibold uppercase tracking-wider mb-4">Catégories</h3>
+                <ul class="space-y-2">
+                    <li><a href="catalogo.html" data-translate="cat_1">Chaussures</a></li>
+                    <li><a href="catalogo.html" data-translate="cat_2">Chemises</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 data-translate="footer_info" class="text-black font-semibold uppercase tracking-wider mb-4">Informations</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" data-translate="info_1">À propos de la marque</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-black font-semibold uppercase tracking-wider mb-4">Contact</h3>
+                <p class="font-medium text-black">Email: contact@lelegance.fr</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const translations = {
+            fr: { nav_catalogue: "Catalogue", nav_panier: "Panier", step_1: "1. Personnels", step_2: "2. Livraison", step_3: "3. Paiement", step_1_title: "1. Informations Personnelles", step_2_title: "2. Adresse de Livraison", step_3_title: "3. Informations de Paiement", confirm_btn: "Confirmer le Paiement (292,80 €)", footer_cat: "Catégories", footer_info: "Informations", cat_1: "Chaussures", cat_2: "Chemises", info_1: "À propos de la marque" },
+            es: { nav_catalogue: "Catálogo", nav_panier: "Carrito", step_1: "1. Personales", step_2: "2. Entrega", step_3: "3. Pago", step_1_title: "1. Datos Personales", step_2_title: "2. Dirección de Entrega", step_3_title: "3. Pago con Tarjeta", confirm_btn: "Confirmar Pago (292,80 €)", footer_cat: "Categorías", footer_info: "Información", cat_1: "Calzado", cat_2: "Camisas", info_1: "Sobre la marca" }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('html-tag').setAttribute('lang', lang);
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>

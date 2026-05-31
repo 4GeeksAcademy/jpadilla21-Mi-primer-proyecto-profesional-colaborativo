@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'Élégance | Boutique Officielle de Mode Française</title>
+    <meta name="description" content="Découvrez la nouvelle collection de mode française. Des vêtements modernes, élégants et durables pour toutes les occasions.">
+    <!-- Tailwind CSS CDN Puro -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- SCHEMA.ORG: DATOS ESTRUCTURADOS DE LA ORGANIZACIÓN (Requisito de image_04b128.png) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ClothingStore",
+      "name": "L'Élégance",
+      "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80",
+      "description": "Boutique officielle de mode française minimaliste et durable.",
+      "url": "https://lelegance.fr",
+      "priceRange": "$$",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Paris",
+        "addressCountry": "FR"
+      }
+    }
+    </script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+
+    <!-- NAVBAR REUTILIZABLE -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
+            
+            <!-- Barra de Búsqueda -->
+            <div class="hidden md:flex flex-1 max-w-md mx-4">
+                <div class="relative w-full">
+                    <input type="text" placeholder="Rechercher..." class="w-full bg-gray-100 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-black">
+                    <span class="absolute left-3 top-2.5 text-gray-400">🔍</span>
+                </div>
+            </div>
+
+            <!-- Selector de Idioma -->
+            <div class="flex items-center">
+                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
+                    <option value="fr" selected>FR 🇫🇷</option>
+                    <option value="es">ES 🇪🇸</option>
+                </select>
+            </div>
+
+            <!-- Menú de Enlaces -->
+            <nav class="flex items-center gap-6 text-sm font-medium">
+                <a href="catalogo.html" data-translate="nav_catalogue" class="hover:text-gray-500 transition">Catalogue</a>
+                <a href="carrito.html" class="relative hover:text-gray-500 transition">
+                    <span data-translate="nav_panier">Panier</span> 🛒
+                    <span class="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="flex-grow">
+        <!-- SECCIÓN HERO -->
+        <section class="relative bg-gray-900 text-white h-[500px] flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-r from-black/70 to-black/40 z-10"></div>
+            <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center"></div>
+            <div class="relative z-20 text-center max-w-3xl px-4">
+                <span data-translate="hero_badge" class="text-xs uppercase tracking-widest font-semibold bg-white/20 px-3 py-1 rounded-full">Nouvelle Collection 2026</span>
+                <h1 data-translate="hero_title" class="text-4xl sm:text-6xl font-serif mt-4 mb-6">L'art de vivre à la française</h1>
+                <p data-translate="hero_desc" class="text-base sm:text-lg text-gray-200 mb-8 max-w-xl mx-auto">Explorez des designs intemporels conçus pour durer. Élégance minimaliste et coupes parfaites.</p>
+                <a href="catalogo.html" data-translate="hero_btn" class="bg-white text-black px-8 py-3 font-medium hover:bg-gray-100 transition inline-block">Acheter Maintenant</a>
+            </div>
+        </section>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-16">
+            <!-- SECCIÓN: NUEVOS LANZAMIENTOS -->
+            <section aria-labelledby="new-arrivals-title">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 id="new-arrivals-title" data-translate="section_news" class="text-2xl font-serif font-bold text-black">Nouveaux Lancements</h2>
+                    <a href="catalogo.html" data-translate="view_all" class="text-sm underline font-medium hover:text-gray-600">Voir tout</a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <article class="bg-white p-3 border border-gray-100 rounded-lg group shadow-sm">
+                        <a href="producto.html" class="block space-y-3">
+                            <div class="bg-gray-100 aspect-[3/4] overflow-hidden rounded-md">
+                                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80" alt="Chemise" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            </div>
+                            <div>
+                                <h3 data-translate="prod_1_title" class="font-medium text-sm text-gray-900">Chemise Lin Classique</h3>
+                                <p data-translate="prod_1_desc" class="text-xs text-gray-500 mt-1">Blanche / Lin Bio</p>
+                                <p class="text-sm font-semibold text-black mt-2">79,00 €</p>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+
+            <!-- SECCIÓN: MÁS VENDIDOS -->
+            <section aria-labelledby="best-sellers-title">
+                <div class="flex items-center justify-between mb-8">
+                    <h2 id="best-sellers-title" data-translate="section_bestsellers" class="text-2xl font-serif font-bold text-black">Les Plus Vendus</h2>
+                    <a href="catalogo.html" data-translate="view_all" class="text-sm underline font-medium hover:text-gray-600">Voir tout</a>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+                    <article class="bg-white p-3 border border-gray-100 rounded-lg group shadow-sm">
+                        <a href="producto.html" class="block space-y-3">
+                            <div class="bg-gray-100 aspect-[3/4] overflow-hidden rounded-md">
+                                <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=600&q=80" alt="Veste" class="w-full h-full object-cover group-hover:scale-105 transition duration-300">
+                            </div>
+                            <div>
+                                <h3 data-translate="prod_2_title" class="font-medium text-sm text-gray-900">Veste Blazer Moderne</h3>
+                                <p data-translate="prod_2_desc" class="text-xs text-gray-500 mt-1">Gris Anthracite</p>
+                                <p class="text-sm font-semibold text-black mt-2">149,00 €</p>
+                            </div>
+                        </a>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- FOOTER REUTILIZABLE -->
+    <footer class="bg-white border-t border-gray-200 mt-auto text-sm text-gray-600">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div>
+                <h3 data-translate="footer_cat" class="text-black font-semibold uppercase tracking-wider mb-4">Catégories</h3>
+                <ul class="space-y-2">
+                    <li><a href="catalogo.html" data-translate="cat_1">Chaussures</a></li>
+                    <li><a href="catalogo.html" data-translate="cat_2">Chemises</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 data-translate="footer_info" class="text-black font-semibold uppercase tracking-wider mb-4">Informations</h3>
+                <ul class="space-y-2">
+                    <li><a href="#" data-translate="info_1">À propos de la marque</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="text-black font-semibold uppercase tracking-wider mb-4">Contact</h3>
+                <p class="font-medium text-black">Email: contact@lelegance.fr</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPT JAVASCRIPT DE TRADUCCIÓN -->
+    <script>
+        const translations = {
+            fr: {
+                nav_catalogue: "Catalogue", nav_panier: "Panier",
+                hero_badge: "Nouvelle Collection 2026", hero_title: "L'art de vivre à la française",
+                hero_desc: "Explorez des designs intemporels conçus pour durer. Élégance minimaliste et coupes parfaites.",
+                hero_btn: "Acheter Maintenant", section_news: "Nouveaux Lancements",
+                section_bestsellers: "Les Plus Vendus", view_all: "Voir tout",
+                prod_1_title: "Chemise Lin Classique", prod_1_desc: "Blanche / Lin Bio",
+                prod_2_title: "Veste Blazer Moderne", prod_2_desc: "Gris Anthracite",
+                footer_cat: "Catégories", footer_info: "Informations",
+                cat_1: "Chaussures", cat_2: "Chemises", info_1: "À propos de la marque"
+            },
+            es: {
+                nav_catalogue: "Catálogo", nav_panier: "Carrito",
+                hero_badge: "Nueva Colección 2026", hero_title: "El arte de vivir a la francesa",
+                hero_desc: "Explora diseños atemporales creados para durar. Elegancia minimalista y cortes perfectos.",
+                hero_btn: "Comprar Ahora", section_news: "Nuevos Lanzamientos",
+                section_bestsellers: "Los Más Vendidos", view_all: "Ver todo",
+                prod_1_title: "Camisa de Lino Clásica", prod_1_desc: "Blanco / Lino Orgánico",
+                prod_2_title: "Chaqueta Blazer Moderna", prod_2_desc: "Gris Antracita",
+                footer_cat: "Categorías", footer_info: "Información",
+                cat_1: "Calzado", cat_2: "Camisas", info_1: "Sobre la marca"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('html-tag').setAttribute('lang', lang);
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
