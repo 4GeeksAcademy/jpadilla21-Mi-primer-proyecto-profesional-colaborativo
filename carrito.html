@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panier | L'Élégance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
+            <div class="flex items-center">
+                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
+                    <option value="fr">FR 🇫🇷</option>
+                    <option value="es">ES 🇪🇸</option>
+                </select>
+            </div>
+            <nav class="flex items-center gap-6 text-sm font-medium">
+                <a href="catalogo.html" data-translate="nav_catalogue">Catalogue</a>
+                <a href="carrito.html" class="text-black underline font-semibold" data-translate="nav_panier">Panier 🛒</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow">
+        <h1 data-translate="cart_title" class="text-3xl font-serif font-bold text-black mb-8">Votre Panier</h1>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+            <div class="lg:col-span-2 space-y-4">
+                <article class="bg-white p-4 border border-gray-200 rounded-lg flex gap-4 items-center shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=150&q=80" class="w-20 h-24 object-cover rounded-md bg-gray-50">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="font-medium text-sm text-gray-900 truncate" data-translate="item_1">Chemise Lin Classique</h2>
+                        <p class="text-xs text-gray-400 mt-1">Prix unit: 79,00 €</p>
+                    </div>
+                    <div class="text-right font-semibold text-sm">79,00 €</div>
+                </article>
+
+                <article class="bg-white p-4 border border-gray-200 rounded-lg flex gap-4 items-center shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=150&q=80" class="w-20 h-24 object-cover rounded-md bg-gray-50">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="font-medium text-sm text-gray-900 truncate" data-translate="item_2">Pantalon Chino Beige</h2>
+                        <p class="text-xs text-gray-400 mt-1">Prix unit: 95,00 €</p>
+                    </div>
+                    <div class="text-right font-semibold text-sm">95,00 €</div>
+                </article>
+
+                <article class="bg-white p-4 border border-gray-200 rounded-lg flex gap-4 items-center shadow-sm">
+                    <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=150&q=80" class="w-20 h-24 object-cover rounded-md bg-gray-50">
+                    <div class="flex-1 min-w-0">
+                        <h2 class="font-medium text-sm text-gray-900 truncate" data-translate="item_3">T-Shirt Minimaliste</h2>
+                        <p class="text-xs text-gray-400 mt-1">Prix unit: 35,00 € (x2)</p>
+                    </div>
+                    <div class="text-right font-semibold text-sm">70,00 €</div>
+                </article>
+            </div>
+
+            <div class="bg-white p-6 border border-gray-200 rounded-lg space-y-4 shadow-sm">
+                <h2 data-translate="summary_title" class="text-lg font-serif font-bold text-black">Résumé</h2>
+                <div class="space-y-2 text-sm text-gray-600">
+                    <div class="flex justify-between"><span>Subtotal</span><span>244,00 €</span></div>
+                    <div class="flex justify-between"><span data-translate="tax_text">Impôts (TVA 20%)</span><span>48,80 €</span></div>
+                    <hr>
+                    <div class="flex justify-between text-base font-bold text-black"><span>Total</span><span>292,80 €</span></div>
+                </div>
+                <button type="button" onclick="location.href='checkout.html'" data-translate="buy_btn" class="w-full bg-black text-white py-3 font-medium uppercase tracking-wider text-sm hover:bg-gray-900 transition rounded-md block text-center">
+                    Comprar
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        const translations = {
+            fr: { nav_catalogue: "Catalogue", nav_panier: "Panier 🛒", cart_title: "Votre Panier", item_1: "Chemise Lin Classique", item_2: "Pantalon Chino Beige", item_3: "T-Shirt Minimaliste", summary_title: "Résumé de la commande", tax_text: "Impôts (TVA 20%)", buy_btn: "Comprar" },
+            es: { nav_catalogue: "Catálogo", nav_panier: "Carrito 🛒", cart_title: "Su Carrito", item_1: "Camisa de Lino Clásica", item_2: "Pantalón Chino Beige", item_3: "Camiseta Minimalista", summary_title: "Resumen del pedido", tax_text: "Impuestos (IVA 20%)", buy_btn: "Comprar" }
+        };
+
+        function changeLanguage(lang) {
+            document.getElementById('html-tag').setAttribute('lang', lang);
+            document.querySelectorAll('[data-translate]').forEach(el => {
+                const key = el.getAttribute('data-translate');
+                if (translations[lang][key]) el.textContent = translations[lang][key];
+            });
+            localStorage.setItem('preferred-lang', lang);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
