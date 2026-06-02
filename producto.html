@@ -1,162 +1,307 @@
 <!DOCTYPE html>
 <html lang="fr" id="html-tag">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produit | L'Élégance</title>
-    <!-- Tailwind CSS CDN Puro -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- SCHEMA.ORG: DATOS ESTRUCTURADOS DE PRODUCTO (Requerido en image_03413f.png) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org/",
-      "@type": "Product",
-      "name": "Chemise en Lin Élégante",
-      "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80",
-      "description": "Confectionnée dans un lin de qualité supérieure, cette chemise incarne l'équilibre parfait entre confort estival et raffinement.",
-      "sku": "LE-1005",
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "EUR",
-        "price": "85.00",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Élégance Parisienne | Détails du Produit</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
 
-    <!-- NAVBAR REUTILIZABLE -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
-            
-            <div class="hidden md:flex flex-1 max-w-md mx-4">
-                <div class="relative w-full">
-                    <input type="text" placeholder="Rechercher..." class="w-full bg-gray-100 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-black">
-                    <span class="absolute left-3 top-2.5 text-gray-400">🔍</span>
-                </div>
+  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div class="flex-shrink-0">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase">L'ÉLÉGANCE</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="relative inline-block text-left group">
+          <button type="button" class="bg-white border border-stone-200 px-2.5 py-1.5 text-xs font-medium rounded-md">
+            <span id="current-lang-label">🌐 FR</span>
+          </button>
+          <div class="origin-top-right absolute right-0 mt-1 w-28 rounded-md shadow-lg bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="py-1">
+              <button onclick="changeLanguage('fr')" class="w-full text-left px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Français</button>
+              <button onclick="changeLanguage('es')" class="w-full text-left px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Español</button>
             </div>
-
-            <div class="flex items-center">
-                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
-                    <option value="fr">FR 🇫🇷</option>
-                    <option value="es">ES 🇪🇸</option>
-                </select>
-            </div>
-
-            <nav class="flex items-center gap-6 text-sm font-medium">
-                <a href="catalogo.html" data-translate="nav_catalogue" class="hover:text-gray-500 transition">Catalogue</a>
-                <a href="carrito.html" class="relative hover:text-gray-500 transition">
-                    <span data-translate="nav_panier">Panier</span> 🛒
-                    <span class="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
-                </a>
-            </nav>
+          </div>
         </div>
-    </header>
+        <a href="catalogo.html" data-translate="nav_catalogue" class="text-stone-600 text-xs font-medium uppercase">Catalogue</a>
+        <a href="carrito.html" class="text-stone-600 relative p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          <span id="cart-counter" class="absolute -top-1 -right-1 bg-amber-700 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
 
-    <!-- DOS COLUMNAS SEMÁNTICAS -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full flex-grow">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-16 items-start mb-12">
-            
-            <!-- Columna Izquierda: Imagen (Con Lazy Loading para rendimiento) -->
-            <section aria-label="Galerie photo" class="bg-gray-100 aspect-[3/4] rounded-xl overflow-hidden shadow-sm">
-                <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80" 
-                     alt="Chemise Élégante en Lin" width="600" height="800"
-                     class="w-full h-full object-cover" loading="lazy">
-            </section>
+  <main class="flex-grow max-w-6xl w-full mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+      
+      <div class="w-full aspect-[3/4] bg-stone-100 rounded-lg overflow-hidden shadow-xs">
+        <img id="product-img" src="" class="w-full h-full object-cover">
+      </div>
 
-            <!-- Columna Derecha: Datos Obligatorios -->
-            <section aria-label="Détails du produit" class="space-y-6">
-                <div>
-                    <h1 data-translate="prod_name" class="text-3xl font-serif font-bold text-black mb-2">Chemise en Lin Élégante</h1>
-                    <p class="text-xs text-gray-400 font-mono">CODE: <span id="prod-code">LE-1005</span></p>
-                </div>
+      <div class="flex flex-col">
+        <h1 id="product-title" class="font-serif text-3xl font-bold text-stone-900 mb-2">---</h1>
+        <p class="text-xs text-stone-400 font-medium mb-4">REF: <span id="product-ref">---</span></p>
+        <p id="product-price" class="text-2xl font-bold text-stone-950 mb-6">0.00 €</p>
 
-                <div class="border-b border-gray-100 pb-4">
-                    <p class="text-2xl font-bold text-black">85,00 €</p>
-                </div>
-
-                <form class="space-y-4" onsubmit="alert('Ajouté au panier'); return false;">
-                    <div>
-                        <label data-translate="label_size" class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Taille</label>
-                        <select required class="w-full max-w-xs bg-white border border-gray-200 rounded-md p-2.5 text-sm outline-none focus:ring-1 focus:ring-black">
-                            <option value="S">S</option>
-                            <option value="M" selected>M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label data-translate="label_qty" class="block text-xs font-bold uppercase tracking-wider text-gray-500 mb-2">Quantité</label>
-                        <input type="number" min="1" max="10" value="1" required class="w-20 bg-white border border-gray-200 rounded-md p-2.5 text-sm text-center outline-none focus:ring-1 focus:ring-black">
-                    </div>
-
-                    <div class="pt-4">
-                        <button type="submit" data-translate="btn_add" class="w-full max-w-md bg-black text-white py-4 font-medium uppercase tracking-wider text-sm hover:bg-gray-900 transition rounded-md shadow-sm">
-                            Ajouter au panier
-                        </button>
-                    </div>
-                </form>
-            </section>
+        <div class="mb-4">
+          <label class="text-xs font-bold text-stone-500 uppercase tracking-wider block mb-2" data-translate="label_size">Sélectionner la Taille</label>
+          <select id="product-size" class="w-full max-w-[200px] bg-white border border-stone-200 rounded-md p-2 text-xs focus:outline-none">
+            <option value="S">S</option>
+            <option value="M" selected>M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
         </div>
 
-        <hr class="border-gray-200 my-8">
-        
-        <!-- Descripción -->
-        <section class="max-w-3xl">
-            <h2 data-translate="desc_title" class="text-xl font-serif font-bold text-black mb-4">Description du produit</h2>
-            <div data-translate="desc_content" class="text-sm text-gray-600 leading-relaxed space-y-3">
-                <p>Confectionnée dans un lin de qualité supérieure, cette chemise incarne l'équilibre parfait entre confort estival et raffinement intemporel.</p>
-            </div>
-        </section>
-    </main>
-
-    <!-- FOOTER REUTILIZABLE -->
-    <footer class="bg-white border-t border-gray-200 mt-auto text-sm text-gray-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h3 data-translate="footer_cat" class="text-black font-semibold uppercase tracking-wider mb-4">Catégories</h3>
-                <ul class="space-y-2">
-                    <li><a href="catalogo.html" data-translate="cat_1">Chaussures</a></li>
-                    <li><a href="catalogo.html" data-translate="cat_2">Chemises</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 data-translate="footer_info" class="text-black font-semibold uppercase tracking-wider mb-4">Informations</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" data-translate="info_1">À propos de la marque</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-black font-semibold uppercase tracking-wider mb-4">Contact</h3>
-                <p class="font-medium text-black">Email: contact@lelegance.fr</p>
-            </div>
+        <div class="mb-6">
+          <label class="text-xs font-bold text-stone-500 uppercase tracking-wider block mb-2" data-translate="label_qty">Quantité</label>
+          <div class="flex items-center border border-stone-200 rounded-md w-max bg-white">
+            <button onclick="stepQty(-1)" class="px-3 py-1.5 text-sm hover:bg-stone-100 font-bold">-</button>
+            <input type="number" id="product-qty" value="1" min="1" class="w-12 text-center text-xs font-semibold focus:outline-none border-none bg-transparent">
+            <button onclick="stepQty(1)" class="px-3 py-1.5 text-sm hover:bg-stone-100 font-bold">+</button>
+          </div>
         </div>
-    </footer>
 
-    <script>
-        const translations = {
-            fr: { nav_catalogue: "Catalogue", nav_panier: "Panier", prod_name: "Chemise en Lin Élégante", label_size: "Taille", label_qty: "Quantité", btn_add: "Ajouter au panier", desc_title: "Description du produit", desc_content: "Confectionnée dans un lin de qualité supérieure, cette chemise incarne l'équilibre parfait entre confort estival et raffinement intemporel.", footer_cat: "Catégories", footer_info: "Informations", cat_1: "Chaussures", cat_2: "Chemises", info_1: "À propos de la marque" },
-            es: { nav_catalogue: "Catálogo", nav_panier: "Carrito", prod_name: "Camisa de Lino Elegante", label_size: "Talla", label_qty: "Cantidad", btn_add: "Añadir al carrito", desc_title: "Descripción del producto", desc_content: "Confeccionada con lino de la más alta calidad, esta camisa encarna el equilibrio perfecto entre la comodidad veraniega y el refinamiento atemporal.", footer_cat: "Categorías", footer_info: "Información", cat_1: "Calzado", cat_2: "Camisas", info_1: "Sobre la marca" }
-        };
+        <button id="add-btn" class="w-full bg-stone-900 hover:bg-amber-700 text-white font-medium py-3.5 rounded-md text-xs uppercase tracking-widest transition-colors font-semibold cursor-pointer mb-8">Ajouter au panier</button>
+      </div>
+    </div>
 
-        function changeLanguage(lang) {
-            document.getElementById('html-tag').setAttribute('lang', lang);
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            localStorage.setItem('preferred-lang', lang);
-        }
+    <div class="mt-16 border-t border-stone-200 pt-8 max-w-3xl">
+      <h2 class="font-serif text-xl font-bold mb-4" data-translate="desc_title">Détails et Matériaux</h2>
+      <div class="space-y-4 text-xs text-stone-600 leading-relaxed">
+        <div>
+          <h4 class="font-bold text-stone-900 uppercase tracking-wider mb-1" data-translate="desc_materials_label">Matériaux</h4>
+          <p id="desc-materials">---</p>
+        </div>
+        <div>
+          <h4 class="font-bold text-stone-900 uppercase tracking-wider mb-1" data-translate="desc_use_label">Usage Recommandé</h4>
+          <p id="desc-use">---</p>
+        </div>
+      </div>
+    </div>
+  </main>
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
-            document.getElementById('language-selector').value = savedLang;
-            changeLanguage(savedLang);
-        });
-    </script>
+  <div id="cart-popup" class="fixed bottom-5 right-5 bg-stone-900 text-white px-6 py-4 shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex flex-col gap-1 min-w-[280px] rounded-md">
+    <p data-translate="popup_success" class="font-bold text-xs text-emerald-400">✓ Article ajouté!</p>
+    <p id="popup-item-name" class="text-xs text-stone-300 font-medium"></p>
+    <button onclick="closePopup()" class="absolute top-2 right-2 text-stone-400 hover:text-white text-sm cursor-pointer">&times;</button>
+  </div>
+
+  <footer class="bg-stone-950 text-stone-400 text-xs pt-12 pb-6 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div><h4 class="text-white font-serif text-sm font-bold tracking-widest uppercase mb-3">L'ÉLÉGANCE</h4></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase" data-translate="footer_cat_title">Catégories</h4></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase">Legal</h4></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase">Contacto</h4><p class="text-stone-500">support@lelegance.com</p></div>
+    </div>
+  </footer>
+
+  <script>
+    // Base de datos de 20 productos únicos estructurada idénticamente al catálogo
+    const fullProductsCatalog = [
+      // --- CHEMISES ---
+      { id: "prod_1", price: 37.50, cat: "Chemises", ref: "LE-1001",
+        fr: "Chemise en Chambray Bleu", es: "Camisa de Chambray Azul",
+        img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&auto=format&fit=crop&q=80",
+        matFr: "100% Coton Chambray léger et respirant.", matEs: "100% Algodón Chambray ligero y transpirable.",
+        useFr: "Idéal pour un look décontracté chic en été.", useEs: "Ideal para un look casual refinado en verano." },
+      { id: "prod_2", price: 42.00, cat: "Chemises", ref: "LE-1002",
+        fr: "Chemise Blanche en Lin Casual", es: "Camisa Blanca de Lino Casual",
+        img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&auto=format&fit=crop&q=80",
+        matFr: "Lin premium écoresponsable, prélavé.", matEs: "Lino premium eco-responsable, prelavado.",
+        useFr: "Parfait pour les journées chaudes ou la plage.", useEs: "Perfecto para días calurosos o la playa." },
+      { id: "prod_3", price: 65.00, cat: "Chemises", ref: "LE-1003",
+        fr: "Chemise Noire Oxford", es: "Camisa Negra de Traje Oxford",
+        img: "https://images.unsplash.com/photo-1611312449412-6cefac5dc3e4?w=400&auto=format&fit=crop&q=80",
+        matFr: "Tissu Oxford robuste en pur coton double fil.", matEs: "Tejido Oxford robusto de puro algodón de doble hilo.",
+        useFr: "Idéal pour les réunions de travail ou soirées.", useEs: "Ideal para reuniones de trabajo o salidas de noche." },
+      { id: "prod_4", price: 48.90, cat: "Chemises", ref: "LE-1004",
+        fr: "Chemise à Carreaux Bûcheron", es: "Camisa de Cuadros Tipo Leñador",
+        img: "https://images.unsplash.com/photo-1588359348347-9bc6cbaa689e?w=400&auto=format&fit=crop&q=80",
+        matFr: "Flanelle douce et isolante de haute qualité.", matEs: "Franela suave y aislante de alta calidad.",
+        useFr: "Parfait pour un style urbain et décontracté.", useEs: "Perfecto para un estilo urbano y relajado." },
+      { id: "prod_5", price: 55.00, cat: "Chemises", ref: "LE-1005",
+        fr: "Chemise en Coton Motif Floral", es: "Camisa de Algodón con Flores",
+        img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&auto=format&fit=crop&q=80",
+        matFr: "Coton popeline doux imprimé haute définition.", matEs: "Algodón popelina suave impreso en alta definición.",
+        useFr: "Idéal pour apporter de la fraîcheur à votre garde-robe.", useEs: "Ideal para aportar frescura a tu guardarropa." },
+
+      // --- PANTALONS ---
+      { id: "prod_6", price: 45.00, cat: "Pantalons", ref: "LE-1006",
+        fr: "Jean Slim avec Patchs Denim", es: "Jeans Ajustados con Parches Denim",
+        img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&auto=format&fit=crop&q=80",
+        matFr: "Denim extensible avec détails artisanaux.", matEs: "Denim elástico con detalles artesanales.",
+        useFr: "Conçu pour le confort quotidien urbain.", useEs: "Diseñado para el confort diario urbano." },
+      { id: "prod_7", price: 58.00, cat: "Pantalons", ref: "LE-1007",
+        fr: "Chino Classique Beige", es: "Pantalón Chino Clásico Beige",
+        img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400&auto=format&fit=crop&q=80",
+        matFr: "Twill de coton stretch robuste.", matEs: "Sarga de algodón elástico y resistente.",
+        useFr: "Une alternative élégante au jean pour le bureau.", useEs: "Una alternativa elegante a los jeans para la oficina." },
+      { id: "prod_8", price: 72.50, cat: "Pantalons", ref: "LE-1008",
+        fr: "Pantalon de Costume Gris", es: "Pantalón de Traje Gris Sastre",
+        img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&auto=format&fit=crop&q=80",
+        matFr: "Mélange de laine fine et polyester infroissable.", matEs: "Mezcla de lana fina y poliéster resistente a arrugas.",
+        useFr: "Parfait pour les événements formels ou professionnels.", useEs: "Perfecto para eventos formales o de negocios." },
+      { id: "prod_9", price: 39.90, cat: "Pantalons", ref: "LE-1009",
+        fr: "Jean Cargo Noir Militaire", es: "Pantalón Jean Cargo Negro",
+        img: "https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&auto=format&fit=crop&q=80",
+        matFr: "Coton tissé renforcé avec poches fonctionnelles.", matEs: "Algodón tejido reforzado con bolsillos funcionales.",
+        useFr: "Style streetwear utilitaire très résistant.", useEs: "Estilo streetwear utilitario de alta resistencia." },
+      { id: "prod_10", price: 49.00, cat: "Pantalons", ref: "LE-1010",
+        fr: "Pantalon Jogger Vert Olive", es: "Pantalón Jogger Deportivo Verde",
+        img: "https://images.unsplash.com/photo-1551854838-212c50b4c184?w=400&auto=format&fit=crop&q=80",
+        matFr: "Mélange coton-sport ultra doux à la taille élastique.", matEs: "Mezcla de algodón deportivo ultra suave con cintura elástica.",
+        useFr: "Idéal pour les moments de détente ou voyages.", useEs: "Ideal para momentos de relax o viajes." },
+
+      // --- CHAUSSURES ---
+      { id: "prod_11", price: 52.50, cat: "Chaussures", ref: "LE-1011",
+        fr: "Baskets Sport Kaki New-V", es: "Zapatillas Deportivas Caqui New-V",
+        img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&auto=format&fit=crop&q=80",
+        matFr: "Maille respirante et semelle amortissante.", matEs: "Malla transpirable y suela con amortiguación.",
+        useFr: "Pour vos activités quotidiennes et sport chic.", useEs: "Para tus actividades diarias y estilo sport chic." },
+      { id: "prod_12", price: 120.00, cat: "Chaussures", ref: "LE-1012",
+        fr: "Chaussures Oxford en Cuir Brun", es: "Zapatos Oxford de Cuero Marrón",
+        img: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=400&auto=format&fit=crop&q=80",
+        matFr: "Cuir pleine fleur tanné végétal.", matEs: "Cuero de plena flor curtido vegetal.",
+        useFr: "Chaussure de cérémonie et d'affaires par excellence.", useEs: "Zapato de ceremonia y negocios por excelencia." },
+      { id: "prod_13", price: 95.00, cat: "Chaussures", ref: "LE-1013",
+        fr: "Bottines Chelsea en Daim", es: "Botas Chelsea de Gamuza Camel",
+        img: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400&auto=format&fit=crop&q=80",
+        matFr: "Daim véritable traité contre l'humidité.", matEs: "Gamuza auténtica tratada contra la humedad.",
+        useFr: "Élégance polyvalente pour l'automne et l'hiver.", useEs: "Elegancia versátil para otoño e invierno." },
+      { id: "prod_14", price: 195.00, cat: "Chaussures", ref: "LE-1014",
+        fr: "Chaqueta de Cuero Genuino", es: "Chaqueta de Cuero Genuino",
+        img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&auto=format&fit=crop&q=80",
+        matFr: "Cuir nappa de première sélection.", matEs: "Cuero napa de primera selección.",
+        useFr: "Pièce intemporelle pour un style affirmé.", useEs: "Pieza atemporal para un estilo firme." },
+      { id: "prod_15", price: 68.00, cat: "Chaussures", ref: "LE-1015",
+        fr: "Mocassins Classiques Noirs", es: "Mocasines de Cuero Negro Glaseado",
+        img: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=400&auto=format&fit=crop&q=80",
+        matFr: "Cuir poli brillant avec surpiqûres faites main.", matEs: "Cuero pulido brillante con costuras hechas a mano.",
+        useFr: "Parfait sans chaussettes pour un style Riviera.", useEs: "Perfecto sin calcetines para un estilo Riviera." },
+
+      // --- ACCESSOIRES ---
+      { id: "prod_16", price: 60.00, cat: "Accessoires", ref: "LE-1016",
+        fr: "Sac à Dos Urbain Minimaliste", es: "Mochila Urbana Minimalista Negra",
+        img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&auto=format&fit=crop&q=80",
+        matFr: "Toile de nylon balistique imperméable.", matEs: "Lona de nylon balístico impermeable.",
+        useFr: "Idéal pour transporter un ordinateur portable.", useEs: "Ideal para transportar una computadora portátil." },
+      { id: "prod_17", price: 25.00, cat: "Accessoires", ref: "LE-1017",
+        fr: "Ceinture Élégante en Cuir Noir", es: "Cinturón de Cuero Negro Elegante",
+        img: "https://images.unsplash.com/photo-1624222247344-550fb8ef897d?w=400&auto=format&fit=crop&q=80",
+        matFr: "Cuir de vachette véritable, boucle argentée.", matEs: "Cuero de vaquetilla auténtico, hebilla plateada.",
+        useFr: "Ajustement parfait pour costumes ou chinos.", useEs: "Ajuste perfecto para trajes o chinos." },
+      { id: "prod_18", price: 35.00, cat: "Accessoires", ref: "LE-1018",
+        fr: "Portefeuille Compact en Cuir Tan", es: "Billetera Compacta de Cuero Camel",
+        img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&auto=format&fit=crop&q=80",
+        matFr: "Cuir souple avec protection RFID intégrée.", matEs: "Cuero suave con protección RFID integrada.",
+        useFr: "Se glisse discrètement dans toutes les poches.", useEs: "Se desliza discretamente en cualquier bolsillo." },
+      { id: "prod_19", price: 85.00, cat: "Accessoires", ref: "LE-1019",
+        fr: "Montre Minimaliste Cadran Argent", es: "Reloj Minimalista con Esfera Plateada",
+        img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop&q=80",
+        matFr: "Acier inoxydable et bracelet en cuir noir.", matEs: "Acero inoxidable y correa de cuero negro.",
+        useFr: "Accessoire intemporel de précision quartz.", useEs: "Accesorio atemporal de precisión cuarzo." },
+      { id: "prod_20", price: 29.90, cat: "Accessoires", ref: "LE-1020",
+        fr: "Lunettes de Soleil Vintage", es: "Gafas de Sol de Carey Vintage",
+        img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&auto=format&fit=crop&q=80",
+        matFr: "Monture acétate et verres UV400 polarisés.", matEs: "Montura de acetato y cristales UV400 polarizados.",
+        useFr: "Protection optimale avec un style rétro chic.", useEs: "Protección óptima con un estilo retro chic." }
+    ];
+
+    const translations = {
+      fr: { nav_catalogue: "Catalogue", label_size: "Sélectionner la Taille", label_qty: "Quantité", btn_add: "Ajouter au panier", desc_title: "Détails et Matériaux", desc_materials_label: "Matériaux", desc_use_label: "Usage Recommandé", popup_success: "✓ Article ajouté!" },
+      es: { nav_catalogue: "Catálogo", label_size: "Seleccionar Talla", label_qty: "Cantidad", btn_add: "Añadir al carrito", desc_title: "Detalles y Materiales", desc_materials_label: "Materiales", desc_use_label: "Uso Recomendado", popup_success: "✓ ¡Artículo añadido!" }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const currentId = params.get('id') || 'prod_1';
+
+    function stepQty(amount) {
+      const input = document.getElementById('product-qty');
+      let val = parseInt(input.value) + amount;
+      if (val < 1) val = 1;
+      input.value = val;
+    }
+
+    function loadProduct() {
+      const item = fullProductsCatalog.find(p => p.id === currentId) || fullProductsCatalog[0];
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+      
+      document.getElementById('product-img').src = item.img;
+      document.getElementById('product-img').alt = item[lang];
+      document.getElementById('product-title').textContent = item[lang];
+      document.getElementById('product-ref').textContent = item.ref;
+      document.getElementById('product-price').textContent = `${item.price.toFixed(2).replace('.', ',')} €`;
+      document.getElementById('desc-materials').textContent = lang === 'fr' ? item.matFr : item.matEs;
+      document.getElementById('desc-use').textContent = lang === 'fr' ? item.useFr : item.useEs;
+      
+      const btn = document.getElementById('add-btn');
+      btn.textContent = translations[lang].btn_add;
+      btn.onclick = () => addToCart(item.id, item.price);
+    }
+
+    function changeLanguage(lang) {
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang]?.[key]) el.textContent = translations[lang][key];
+      });
+      document.getElementById('current-lang-label').textContent = `🌐 ${lang.toUpperCase()}`;
+      localStorage.setItem('preferred-lang', lang);
+      loadProduct();
+    }
+
+    function updateCartCounter() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-counter').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function addToCart(productKey, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const qty = parseInt(document.getElementById('product-qty').value) || 1;
+      const sizeSelected = document.getElementById('product-size').value;
+
+      const existing = cart.find(item => item.key === productKey && item.size === sizeSelected);
+      if (existing) { 
+        existing.quantity += qty; 
+      } else { 
+        cart.push({ key: productKey, price: price, quantity: qty, size: sizeSelected }); 
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCounter();
+      const currentLang = localStorage.getItem('preferred-lang') || 'fr';
+      const target = fullProductsCatalog.find(p => p.id === productKey);
+      showPopup(target ? target[currentLang] : productKey);
+    }
+
+    function showPopup(name) {
+      document.getElementById('popup-item-name').textContent = name;
+      const p = document.getElementById('cart-popup');
+      p.classList.remove('translate-y-20', 'opacity-0'); p.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(closePopup, 3000);
+    }
+
+    function closePopup() {
+      const p = document.getElementById('cart-popup');
+      if (p) { p.classList.remove('translate-y-0', 'opacity-100'); p.classList.add('translate-y-20', 'opacity-0'); }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+      changeLanguage(lang);
+      updateCartCounter();
+    });
+  </script>
 </body>
 </html>

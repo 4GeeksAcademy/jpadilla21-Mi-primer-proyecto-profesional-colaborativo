@@ -1,173 +1,262 @@
 <!DOCTYPE html>
 <html lang="fr" id="html-tag">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogue | L'Élégance</title>
-    <!-- Tailwind CSS CDN Puro -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- SCHEMA.ORG: DATOS ESTRUCTURADOS PARA EL CATÁLOGO (Requerido en image_03413f.png) -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "ItemList",
-      "name": "Catalogue de la Collection - L'Élégance",
-      "numberOfItems": 15,
-      "itemListElement": [
-        {
-          "@type": "ListItem",
-          "position": 1,
-          "url": "producto.html"
-        }
-      ]
-    }
-    </script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Élégance Parisienne | Catalogue</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
 </head>
-<body class="bg-gray-50 flex flex-col min-h-screen text-gray-800">
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
 
-    <!-- NAVBAR REUTILIZABLE -->
-    <header class="bg-white shadow-sm sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
-            <a href="index.html" class="text-2xl font-bold tracking-widest text-black uppercase">L'Élégance</a>
-            
-            <div class="hidden md:flex flex-1 max-w-md mx-4">
-                <div class="relative w-full">
-                    <input type="text" placeholder="Rechercher..." class="w-full bg-gray-100 pl-10 pr-4 py-2 rounded-full text-sm focus:outline-none focus:ring-1 focus:ring-black">
-                    <span class="absolute left-3 top-2.5 text-gray-400">🔍</span>
-                </div>
-            </div>
-
-            <div class="flex items-center">
-                <select id="language-selector" onchange="changeLanguage(this.value)" class="bg-gray-100 text-xs font-bold uppercase rounded-md px-2 py-1.5 border-none text-gray-700 focus:ring-1 focus:ring-black cursor-pointer">
-                    <option value="fr">FR 🇫🇷</option>
-                    <option value="es">ES 🇪🇸</option>
-                </select>
-            </div>
-
-            <nav class="flex items-center gap-6 text-sm font-medium">
-                <a href="catalogo.html" data-translate="nav_catalogue" class="text-black underline font-semibold">Catalogue</a>
-                <a href="carrito.html" class="relative hover:text-gray-500 transition">
-                    <span data-translate="nav_panier">Panier</span> 🛒
-                    <span class="absolute -top-2 -right-3 bg-black text-white text-xs rounded-full w-4 h-4 flex items-center justify-center">3</span>
-                </a>
-            </nav>
+  <!-- NAVBAR REUTILIZABLE -->
+  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div class="flex-shrink-0">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase">L'ÉLÉGANCE</a>
+      </div>
+      <div class="hidden md:flex flex-1 max-w-md mx-4">
+        <div class="relative w-full">
+          <input type="text" data-translate-placeholder="search_placeholder" placeholder="Rechercher des produits..." class="w-full bg-stone-100 border border-stone-200 pl-4 pr-10 py-2 text-xs rounded-md focus:outline-none focus:border-stone-400">
         </div>
-    </header>
-
-    <!-- CONTENIDO PRINCIPAL SEMÁNTICO -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full flex-grow">
-        <h1 data-translate="cat_title" class="text-3xl font-serif mb-8 text-black font-bold">Catalogue de la Collection</h1>
-
-        <!-- BARRA DE FILTROS -->
-        <section class="bg-white p-4 border border-gray-200 rounded-lg flex flex-wrap gap-4 justify-between items-center mb-8 shadow-sm" aria-label="Filtres de recherche">
-            <div class="flex flex-wrap gap-4">
-                <select class="bg-gray-100 border-none text-sm rounded-md px-3 py-2 text-gray-700 focus:ring-1 focus:ring-black">
-                    <option data-translate="filter_cat" value="">Toutes les catégories</option>
-                </select>
-                <select class="bg-gray-100 border-none text-sm rounded-md px-3 py-2 text-gray-700 focus:ring-1 focus:ring-black">
-                    <option data-translate="filter_size" value="">Toutes les tailles</option>
-                </select>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="relative inline-block text-left group">
+          <button type="button" class="bg-white border border-stone-200 px-2.5 py-1.5 text-xs font-medium rounded-md">
+            <span id="current-lang-label">🌐 FR</span>
+          </button>
+          <div class="origin-top-right absolute right-0 mt-1 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="py-1">
+              <button type="button" onclick="changeLanguage('fr')" class="w-full text-left text-stone-900 block px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Français</button>
+              <button type="button" onclick="changeLanguage('es')" class="w-full text-left text-stone-600 block px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Español</button>
             </div>
-            <div data-translate="grid_count" class="text-xs text-gray-400 font-medium">15 produits référencés</div>
-        </section>
-
-        <!-- REJILLA RESPONSIVA SIN SCROLL HORIZONTAL (Evita fallos en móvil) -->
-        <section id="products-grid" class="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <!-- Renderizado dinámico vía JS -->
-        </section>
-    </main>
-
-    <!-- FOOTER SEMÁNTICO -->
-    <footer class="bg-white border-t border-gray-200 mt-auto text-sm text-gray-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div>
-                <h3 data-translate="footer_cat" class="text-black font-semibold uppercase tracking-wider mb-4">Catégories</h3>
-                <ul class="space-y-2">
-                    <li><a href="catalogo.html" data-translate="cat_1">Chaussures</a></li>
-                    <li><a href="catalogo.html" data-translate="cat_2">Chemises</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 data-translate="footer_info" class="text-black font-semibold uppercase tracking-wider mb-4">Informations</h3>
-                <ul class="space-y-2">
-                    <li><a href="#" data-translate="info_1">À propos de la marque</a></li>
-                </ul>
-            </div>
-            <div>
-                <h3 class="text-black font-semibold uppercase tracking-wider mb-4">Contact</h3>
-                <p class="font-medium text-black">Email: contact@lelegance.fr</p>
-            </div>
+          </div>
         </div>
-    </footer>
+        <a href="catalogo.html" data-translate="nav_catalogue" class="text-stone-900 border-b-2 border-stone-900 text-xs font-medium uppercase tracking-wider pb-1">Catalogue</a>
+        <a href="carrito.html" class="text-stone-600 hover:text-stone-900 transition-colors relative p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" />
+          </svg>
+          <span id="cart-counter" class="absolute -top-1 -right-1 bg-amber-700 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
 
-    <script>
-        const products = [
-            { id: 1, ref: "LE-1001", price: "79,00 €", img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500&q=80", key: "prod_1" },
-            { id: 2, ref: "LE-1002", price: "149,00 €", img: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=500&q=80", key: "prod_2" },
-            { id: 3, ref: "LE-1003", price: "95,00 €", img: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?auto=format&fit=crop&w=500&q=80", key: "prod_3" },
-            { id: 4, ref: "LE-1004", price: "35,00 €", img: "https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=500&q=80", key: "prod_4" },
-            { id: 5, ref: "LE-1005", price: "120,00 €", img: "https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=500&q=80", key: "prod_5" },
-            { id: 6, ref: "LE-1006", price: "110,00 €", img: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=500&q=80", key: "prod_6" },
-            { id: 7, ref: "LE-1007", price: "65,00 €", img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=500&q=80", key: "prod_7" },
-            { id: 8, ref: "LE-1008", price: "180,00 €", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=500&q=80", key: "prod_8" },
-            { id: 9, ref: "LE-1009", price: "45,00 €", img: "https://images.unsplash.com/photo-1509631179647-0177331693ae?auto=format&fit=crop&w=500&q=80", key: "prod_9" },
-            { id: 10, ref: "LE-1010", price: "135,00 €", img: "https://images.unsplash.com/photo-1434389677669-e08b4cac3105?auto=format&fit=crop&w=500&q=80", key: "prod_10" },
-            { id: 11, ref: "LE-1011", price: "55,00 €", img: "https://images.unsplash.com/photo-1554568218-0f1715e72254?auto=format&fit=crop&w=500&q=80", key: "prod_11" },
-            { id: 12, ref: "LE-1012", price: "160,00 €", img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=500&q=80", key: "prod_12" },
-            { id: 13, ref: "LE-1013", price: "40,00 €", img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=500&q=80", key: "prod_13" },
-            { id: 14, ref: "LE-1014", price: "195,00 €", img: "https://images.unsplash.com/photo-1548624149-f7b316030d81?auto=format&fit=crop&w=500&q=80", key: "prod_14" },
-            { id: 15, ref: "LE-1015", price: "70,00 €", img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=500&q=80", key: "prod_15" }
-        ];
+  <!-- CONTENIDO CATÁLOGO -->
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    
+    <!-- BARRA DE FILTROS -->
+    <div class="bg-white border border-stone-200 p-4 rounded-lg flex flex-wrap gap-4 items-center justify-between mb-8">
+      <div class="flex flex-wrap gap-4 items-center">
+        <div class="flex flex-col gap-1">
+          <label class="text-[10px] font-bold text-stone-400 uppercase tracking-wider" data-translate="filter_cat">Categoría</label>
+          <select id="filter-category" onchange="applyFilters()" class="bg-stone-50 border border-stone-200 text-xs px-3 py-1.5 rounded-md focus:outline-none">
+            <option value="All" data-translate="all_categories">Toutes les catégories</option>
+            <option value="Chemises">Chemises / Camisas</option>
+            <option value="Pantalons">Pantalons / Pantalones</option>
+            <option value="Chaussures">Chaussures / Calzado</option>
+            <option value="Accessoires">Accessoires / Accesorios</option>
+          </select>
+        </div>
 
-        const translations = {
-            fr: {
-                nav_catalogue: "Catalogue", nav_panier: "Panier", cat_title: "Catalogue de la Collection", filter_cat: "Toutes les catégories", filter_size: "Toutes les tailles", grid_count: "15 produits référencés", footer_cat: "Catégories", footer_info: "Informations", cat_1: "Chaussures", cat_2: "Chemises", info_1: "À propos de la marque",
-                prod_1: "Chemise Lin Classique", prod_2: "Veste Blazer Moderne", prod_3: "Pantalon Chino Beige", prod_4: "T-Shirt Minimaliste", prod_5: "Pull en Laine Tricoté", prod_6: "Robe d'Été Fleurie", prod_7: "Sweat-shirt Urbain", prod_8: "Manteau Long d'Hiver", prod_9: "Chapeau de Paille Élégant", prod_10: "Blouse en Soie Blanche", prod_11: "T-Shirt Graphique Pur", prod_12: "Jeans Slim Ajusté", prod_13: "Casquette Coton Basique", prod_14: "Veste en Cuir Véritable", prod_15: "Jupe Plissée Moderne"
-            },
-            es: {
-                nav_catalogue: "Catálogo", nav_panier: "Carrito", cat_title: "Catálogo de la Colección", filter_cat: "Todas las categorías", filter_size: "Todas las tallas", grid_count: "15 productos visibles", footer_cat: "Categorías", footer_info: "Información", cat_1: "Calzado", cat_2: "Camisas", info_1: "Sobre la marca",
-                prod_1: "Camisa de Lino Clásica", prod_2: "Chaqueta Blazer Moderna", prod_3: "Pantalón Chino Beige", prod_4: "Camiseta Minimalista", prod_5: "Suéter de Lana Tejido", prod_6: "Vestido de Verano Floreado", prod_7: "Sudadera Urbana Casual", prod_8: "Abrigo Largo de Invierno", prod_9: "Sombrero de Paja Elegante", prod_10: "Blusa de Seda Blanca", prod_11: "Camiseta Gráfica Pura", prod_12: "Jeans Slim Ajustados", prod_13: "Gorra de Algodón Básica", prod_14: "Chaqueta de Cuero Genuino", prod_15: "Falta Plisada Moderna"
-            }
-        };
+        <div class="flex flex-col gap-1">
+          <label class="text-[10px] font-bold text-stone-400 uppercase tracking-wider" data-translate="filter_size">Taille</label>
+          <select id="filter-size" onchange="applyFilters()" class="bg-stone-50 border border-stone-200 text-xs px-3 py-1.5 rounded-md focus:outline-none">
+            <option value="All">All Sizes</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+          </select>
+        </div>
+      </div>
+      <p class="text-xs text-stone-500 font-medium"><span id="items-count">20</span> <span data-translate="products_found">produits trouvés</span></p>
+    </div>
 
-        function renderGrid(lang) {
-            const container = document.getElementById('products-grid');
-            container.innerHTML = '';
-            products.forEach(p => {
-                const productName = translations[lang][p.key];
-                container.innerHTML += `
-                    <article class="bg-white p-3 border border-gray-100 rounded-lg group shadow-sm">
-                        <a href="producto.html" class="block space-y-3">
-                            <div class="bg-gray-100 aspect-[3/4] overflow-hidden rounded-md">
-                                <img src="${p.img}" alt="${productName}" width="240" height="320" class="w-full h-full object-cover group-hover:scale-105 transition duration-300" loading="lazy">
-                            </div>
-                            <div>
-                                <h2 class="font-medium text-sm text-gray-900">${productName}</h2>
-                                <p class="text-xs text-gray-400 mt-1">Réf: ${p.ref}</p>
-                                <p class="text-sm font-semibold text-black mt-2">${p.price}</p>
-                            </div>
-                        </a>
-                    </article>
-                `;
-            });
-        }
+    <!-- REJILLA DE PRODUCTOS (GRID) -->
+    <div id="catalog-grid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <!-- Se autogenera dinámicamente mediante JS -->
+    </div>
+  </main>
 
-        function changeLanguage(lang) {
-            document.getElementById('html-tag').setAttribute('lang', lang);
-            document.querySelectorAll('[data-translate]').forEach(el => {
-                const key = el.getAttribute('data-translate');
-                if (translations[lang][key]) el.textContent = translations[lang][key];
-            });
-            renderGrid(lang);
-            localStorage.setItem('preferred-lang', lang);
-        }
+  <div id="cart-popup" class="fixed bottom-5 right-5 bg-stone-900 text-white px-6 py-4 shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex flex-col gap-1 min-w-[280px] rounded-md">
+    <p data-translate="popup_success" class="font-bold text-xs text-emerald-400">✓ Article ajouté!</p>
+    <p id="popup-item-name" class="text-xs text-stone-300 font-medium"></p>
+    <button onclick="closePopup()" class="absolute top-2 right-2 text-stone-400 hover:text-white text-sm cursor-pointer">&times;</button>
+  </div>
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedLang = localStorage.getItem('preferred-lang') || 'fr';
-            document.getElementById('language-selector').value = savedLang;
-            changeLanguage(savedLang);
-        });
-    </script>
+  <!-- FOOTER REUTILIZABLE -->
+  <footer class="bg-stone-950 text-stone-400 text-xs pt-12 pb-6 border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div><h4 class="text-white font-serif text-sm font-bold tracking-widest uppercase mb-3">L'ÉLÉGANCE</h4><p class="text-stone-500 leading-relaxed" data-translate="footer_desc">L'essence de la mode parisienne directement chez vous.</p></div>
+      <div>
+        <h4 class="text-white font-semibold mb-3 uppercase tracking-wider" data-translate="footer_cat_title">Catégories</h4>
+        <ul class="space-y-2">
+          <li><a href="catalogo.html" class="hover:text-white">Calzado</a></li>
+          <li><a href="catalogo.html" class="hover:text-white">Camisas</a></li>
+          <li><a href="catalogo.html" class="hover:text-white">Pantalones</a></li>
+          <li><a href="catalogo.html" class="hover:text-white">Accesorios</a></li>
+        </ul>
+      </div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase tracking-wider">Legal</h4><ul class="space-y-2"><li><a href="#" class="hover:text-white">Termes et Conditions</a></li><li><a href="#" class="hover:text-white">Politique de Confidentialité</a></li></ul></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase tracking-wider">Contacto</h4><p class="text-stone-500">support@lelegance.com</p></div>
+    </div>
+    <div class="text-center text-stone-600 pt-6 border-t border-stone-900">&copy; 2026 L'Élégance Parisienne.</div>
+  </footer>
+
+  <script>
+    // Base de datos de 20 productos únicos, con fotos reales de alta definición que calzan perfectamente con sus nombres
+    const fullProductsCatalog = [
+      // --- CHEMISES (5) ---
+      { id: "prod_1", price: 37.50, cat: "Chemises", ref: "LE-1001",
+        fr: "Chemise en Chambray Bleu", es: "Camisa de Chambray Azul",
+        img: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_2", price: 42.00, cat: "Chemises", ref: "LE-1002",
+        fr: "Chemise Blanche en Lin Casual", es: "Camisa Blanca de Lino Casual",
+        img: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_3", price: 65.00, cat: "Chemises", ref: "LE-1003",
+        fr: "Chemise Noire Oxford", es: "Camisa Negra de Traje Oxford",
+        img: "https://images.unsplash.com/photo-1611312449412-6cefac5dc3e4?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_4", price: 48.90, cat: "Chemises", ref: "LE-1004",
+        fr: "Chemise à Carreaux Bûcheron", es: "Camisa de Cuadros Tipo Leñador",
+        img: "https://images.unsplash.com/photo-1588359348347-9bc6cbaa689e?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_5", price: 55.00, cat: "Chemises", ref: "LE-1005",
+        fr: "Chemise en Coton Motif Floral", es: "Camisa de Algodón con Flores",
+        img: "https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=400&auto=format&fit=crop&q=80" },
+
+      // --- PANTALONS (5) ---
+      { id: "prod_6", price: 45.00, cat: "Pantalons", ref: "LE-1006",
+        fr: "Jean Slim avec Patchs Denim", es: "Jeans Ajustados con Parches Denim",
+        img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_7", price: 58.00, cat: "Pantalons", ref: "LE-1007",
+        fr: "Chino Classique Beige", es: "Pantalón Chino Clásico Beige",
+        img: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_8", price: 72.50, cat: "Pantalons", ref: "LE-1008",
+        fr: "Pantalon de Costume Gris", es: "Pantalón de Traje Gris Sastre",
+        img: "https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_9", price: 39.90, cat: "Pantalons", ref: "LE-1009",
+        fr: "Jean Cargo Noir Militaire", es: "Pantalón Jean Cargo Negro",
+        img: "https://images.unsplash.com/photo-1517423568366-8b83523034fd?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_10", price: 49.00, cat: "Pantalons", ref: "LE-1010",
+        fr: "Pantalon Jogger Vert Olive", es: "Pantalón Jogger Deportivo Verde",
+        img: "https://images.unsplash.com/photo-1551854838-212c50b4c184?w=400&auto=format&fit=crop&q=80" },
+
+      // --- CHAUSSURES (5) ---
+      { id: "prod_11", price: 52.50, cat: "Chaussures", ref: "LE-1011",
+        fr: "Baskets Sport Kaki New-V", es: "Zapatillas Deportivas Caqui New-V",
+        img: "https://images.unsplash.com/photo-1539185441755-769473a23570?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_12", price: 120.00, cat: "Chaussures", ref: "LE-1012",
+        fr: "Chaussures Oxford en Cuir Brun", es: "Zapatos Oxford de Cuero Marrón",
+        img: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_13", price: 95.00, cat: "Chaussures", ref: "LE-1013",
+        fr: "Bottines Chelsea en Daim", es: "Botas Chelsea de Gamuza Camel",
+        img: "https://images.unsplash.com/photo-1608256246200-53e635b5b65f?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_14", price: 195.00, cat: "Chaussures", ref: "LE-1014", // Conservado por consistencia previa
+        fr: "Chaqueta de Cuero Genuino", es: "Chaqueta de Cuero Genuino", 
+        img: "https://images.unsplash.com/photo-1551028719-00167b16eac5?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_15", price: 68.00, cat: "Chaussures", ref: "LE-1015",
+        fr: "Mocassins Classiques Noirs", es: "Mocasines de Cuero Negro Glaseado",
+        img: "https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=400&auto=format&fit=crop&q=80" },
+
+      // --- ACCESSOIRES (5) ---
+      { id: "prod_16", price: 60.00, cat: "Accessoires", ref: "LE-1016",
+        fr: "Sac à Dos Urbain Minimaliste", es: "Mochila Urbana Minimalista Negra",
+        img: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_17", price: 25.00, cat: "Accessoires", ref: "LE-1017",
+        fr: "Ceinture Élégante en Cuir Noir", es: "Cinturón de Cuero Negro Elegante",
+        img: "https://images.unsplash.com/photo-1624222247344-550fb8ef897d?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_18", price: 35.00, cat: "Accessoires", ref: "LE-1018",
+        fr: "Portefeuille Compact en Cuir Tan", es: "Billetera Compacta de Cuero Camel",
+        img: "https://images.unsplash.com/photo-1627123424574-724758594e93?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_19", price: 85.00, cat: "Accessoires", ref: "LE-1019",
+        fr: "Montre Minimaliste Cadran Argent", es: "Reloj Minimalista con Esfera Plateada",
+        img: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop&q=80" },
+      { id: "prod_20", price: 29.90, cat: "Accessoires", ref: "LE-1020",
+        fr: "Lunettes de Soleil Vintage", es: "Gafas de Sol de Carey Vintage",
+        img: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?w=400&auto=format&fit=crop&q=80" }
+    ];
+
+    const translations = {
+      fr: { nav_catalogue: "Catalogue", filter_cat: "Catégorie", filter_size: "Taille", all_categories: "Toutes", products_found: "produits affichés", btn_add: "Ajouter au panier", popup_success: "✓ Article ajouté!", search_placeholder: "Rechercher..." },
+      es: { nav_catalogue: "Catálogo", filter_cat: "Categoría", filter_size: "Talla", all_categories: "Todas", products_found: "productos mostrados", btn_add: "Añadir al carrito", popup_success: "✓ ¡Artículo añadido!", search_placeholder: "Buscar..." }
+    };
+
+    function changeLanguage(lang) {
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang]?.[key]) el.textContent = translations[lang][key];
+      });
+      document.getElementById('current-lang-label').textContent = `🌐 ${lang.toUpperCase()}`;
+      localStorage.setItem('preferred-lang', lang);
+      applyFilters();
+    }
+
+    function updateCartCounter() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-counter').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function applyFilters() {
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+      const catVal = document.getElementById('filter-category').value;
+      const grid = document.getElementById('catalog-grid');
+      
+      grid.innerHTML = '';
+      let filtered = fullProductsCatalog.filter(p => catVal === 'All' || p.cat === catVal);
+      document.getElementById('items-count').textContent = filtered.length;
+
+      filtered.forEach(prod => {
+        grid.innerHTML += `
+          <div class="bg-white border border-stone-200 p-3 rounded-lg flex flex-col justify-between shadow-xs">
+            <a href="producto.html?id=${prod.id}">
+              <div class="bg-stone-100 aspect-[3/4] overflow-hidden rounded-md mb-3 relative">
+                <img src="${prod.img}" alt="${prod[lang]}" class="w-full h-full object-cover transition-transform duration-300 hover:scale-105">
+              </div>
+              <h3 class="text-xs font-semibold text-stone-900 truncate" title="${prod[lang]}">${prod[lang]}</h3>
+              <p class="text-xs text-stone-400 mt-0.5">Ref: ${prod.ref}</p>
+              <p class="text-xs font-bold text-stone-950 mt-1">${prod.price.toFixed(2).replace('.', ',')} €</p>
+            </a>
+            <button onclick="addToCart('${prod.id}', ${prod.price})" class="w-full mt-3 bg-stone-900 text-white text-[10px] py-2 uppercase tracking-wider rounded-md hover:bg-amber-700 transition-colors cursor-pointer">${translations[lang].btn_add}</button>
+          </div>
+        `;
+      });
+    }
+
+    function addToCart(productKey, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(item => item.key === productKey);
+      if (existing) { existing.quantity += 1; } else { cart.push({ key: productKey, price: price, quantity: 1, size: 'M' }); }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCounter();
+      const currentLang = localStorage.getItem('preferred-lang') || 'fr';
+      const target = fullProductsCatalog.find(p => p.id === productKey);
+      showPopup(target ? target[currentLang] : productKey);
+    }
+
+    function showPopup(name) {
+      document.getElementById('popup-item-name').textContent = name;
+      const p = document.getElementById('cart-popup');
+      p.classList.remove('translate-y-20', 'opacity-0'); p.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(closePopup, 3000);
+    }
+
+    function closePopup() {
+      const p = document.getElementById('cart-popup');
+      if (p) { p.classList.remove('translate-y-0', 'opacity-100'); p.classList.add('translate-y-20', 'opacity-0'); }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+      changeLanguage(lang);
+      updateCartCounter();
+    });
+  </script>
 </body>
 </html>
