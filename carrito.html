@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="fr" id="html-tag">
+<html lang="es" id="html-tag">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>L'Élégance Parisienne | Panier</title>
-  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  
+  <title>Tu Carrito de Compras | L'Élégance Parisienne</title>
+  <meta name="description" content="Gestiona los artículos de tu bolsa de compras, revisa tu subtotal y finaliza tu orden en L'Élégance Parisienne.">
+  <meta name="robots" content="noindex, follow"> <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght=200..800&display=swap" rel="stylesheet">
   <style>
     body { font-family: 'Plus Jakarta Sans', sans-serif; }
     .font-serif { font-family: 'Playfair Display', serif; }
@@ -15,166 +17,132 @@
 </head>
 <body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
 
-  <!-- NAVBAR -->
   <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4" aria-label="Menú de navegación principal">
       <div class="flex-shrink-0">
         <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase">L'ÉLÉGANCE</a>
       </div>
       <div class="flex items-center gap-6">
-        <div class="relative inline-block text-left group">
-          <button type="button" class="inline-flex justify-center items-center gap-1 bg-white text-stone-600 hover:text-stone-900 border border-stone-200 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors">
-            <span id="current-lang-label">🌐 FR</span>
-          </button>
-          <div class="origin-top-right absolute right-0 mt-1 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="py-1">
-              <button type="button" onclick="changeLanguage('fr')" class="w-full text-left text-stone-900 block px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Français</button>
-              <button type="button" onclick="changeLanguage('es')" class="w-full text-left text-stone-600 block px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Español</button>
-            </div>
-          </div>
-        </div>
-        <a href="catalogo.html" data-translate="nav_catalogue" class="text-stone-600 hover:text-stone-900 text-xs font-medium uppercase tracking-wider">Catalogue</a>
-        <a href="carrito.html" class="text-stone-950 border-b border-stone-950 transition-colors relative p-1">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+        <a href="catalogo.html" class="text-stone-600 hover:text-stone-900 text-xs font-medium uppercase tracking-wider">Catálogo</a>
+        <a href="carrito.html" class="text-stone-950 font-bold transition-colors relative p-1" aria-current="page" aria-label="Carrito de compras activo">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
           <span id="cart-counter" class="absolute -top-1 -right-1 bg-amber-700 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
         </a>
       </div>
     </nav>
   </header>
 
-  <!-- CONTENIDO DEL CARRITO -->
-  <main class="flex-grow max-w-4xl w-full mx-auto px-4 py-12">
-    <h1 data-translate="cart_title" class="font-serif text-3xl font-medium tracking-wide mb-8">Votre Panier</h1>
+  <main class="flex-grow max-w-4xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="font-serif text-2xl sm:text-3xl font-normal tracking-wide mb-8 text-stone-900 border-b border-stone-200 pb-4">Tu Bolsa de Compras</h1>
 
-    <div id="cart-content" class="flex flex-col lg:flex-row gap-8">
-      <!-- Lista de Productos -->
-      <div class="flex-1 space-y-4" id="cart-items-container"></div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <section class="md:col-span-2 flex flex-col gap-4" id="cart-items-container" aria-label="Productos en tu carrito">
+        </section>
 
-      <!-- Resumen de Compra -->
-      <div class="w-full lg:w-80 bg-white p-6 border border-stone-200 rounded-xl h-fit">
-        <h2 data-translate="summary_title" class="text-xs uppercase font-bold tracking-wider text-stone-500 mb-4">Résumé de la commande</h2>
-        <div class="flex justify-between items-center border-t border-stone-100 pt-4 mb-6">
-          <span data-translate="summary_total" class="text-xs font-semibold uppercase text-stone-600">Total</span>
-          <span id="cart-total-price" class="text-lg font-bold text-stone-950">0.00 €</span>
+      <section class="bg-white border border-stone-200 p-6 rounded-lg h-fit flex flex-col gap-4 shadow-xs" aria-label="Resumen de facturación">
+        <h2 class="text-xs font-bold uppercase tracking-wider text-stone-700">Resumen del Pedido</h2>
+        <div class="h-[1px] bg-stone-200"></div>
+        <div class="flex justify-between items-center text-xs text-stone-600">
+          <span>Subtotal</span>
+          <span id="cart-subtotal" class="font-semibold text-stone-950">0.00 €</span>
         </div>
-        <a href="checkout.html" data-translate="btn_checkout" class="block w-full text-center bg-stone-900 text-white text-xs py-3 uppercase tracking-widest font-medium rounded-md hover:bg-amber-700 transition-colors">Passer a la caisse</a>
-      </div>
-    </div>
-
-    <!-- Mensaje Carrito Vacío -->
-    <div id="empty-cart-message" class="hidden text-center py-16">
-      <p data-translate="empty_msg" class="text-sm text-stone-500 font-medium mb-6">Votre panier est actuellement vide.</p>
-      <a href="catalogo.html" data-translate="btn_return" class="inline-block bg-stone-900 text-white text-xs px-6 py-3 uppercase tracking-widest font-medium rounded-md hover:bg-stone-800 transition-colors">Retour au Catalogue</a>
+        <div class="flex justify-between items-center text-xs text-stone-600">
+          <span>Envío</span>
+          <span class="text-green-700 font-medium">Gratuito</span>
+        </div>
+        <div class="h-[1px] bg-stone-200"></div>
+        <div class="flex justify-between items-center text-sm font-bold text-stone-900">
+          <span>Total</span>
+          <span id="cart-total">0.00 €</span>
+        </div>
+        <button type="button" onclick="checkout()" class="w-full bg-stone-950 text-white text-xs font-semibold tracking-widest uppercase py-3 rounded-md hover:bg-stone-800 transition-colors mt-2 cursor-pointer">
+          Procesar Pago
+        </button>
+      </section>
     </div>
   </main>
 
   <footer class="bg-stone-950 text-stone-400 text-xs py-6 text-center border-t border-stone-800">
-    <div>&copy; 2026 L'Élégance Parisienne. All rights reserved.</div>
+    <div>&copy; 2026 L'Élégance Parisienne. Todos los derechos reservados.</div>
   </footer>
 
   <script>
-    // MISMA BASE DE DATOS EXACTA PARA SINCRONIZAR LAS IMÁGENES
     const productsDB = [
-      { id: "prod_2", price: 85.00, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=600&q=80", fr: "Montre Minimaliste", es: "Reloj Minimalista de Lujo", cat: "Accessoires" },
-      { id: "prod_3", price: 45.00, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80", fr: "Jean Bleu Classique", es: "Pantalón Denim Elegante", cat: "Pantalons" },
-      { id: "prod_4", price: 52.50, img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80", fr: "Baskets Élégantes", es: "Calzado Deportivo Casual", cat: "Chaussures" },
-      { id: "prod_6", price: 110.00, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80", fr: "Blazer Casual Moderne", es: "Chaqueta Casual Elegante", cat: "Chemises" }
+      { id: "prod_2", price: 85.00, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=600&q=80", fr: "Montre Minimaliste de Luxe", es: "Reloj Minimalista de Lujo", alt: "Reloj de pulsera de lujo" },
+      { id: "prod_3", price: 45.00, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80", fr: "Jean Bleu Classique", es: "Pantalón Denim Elegante", alt: "Pantalón vaquero de mezclilla" },
+      { id: "prod_4", price: 52.50, img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80", fr: "Baskets Élégantes Blanches", es: "Calzado Deportivo Casual", alt: "Calzado casual premium" },
+      { id: "prod_6", price: 110.00, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80", fr: "Blazer Décontracté Rose", es: "Pantalón Casual de Vestir Rosado", alt: "Pantalón casual rosado de vestir" }
     ];
 
-    const translations = {
-      fr: { nav_catalogue: "Catalogue", cart_title: "Votre Panier", summary_title: "Résumé de la commande", summary_total: "Total", btn_checkout: "Passer à la caisse", empty_msg: "Votre panier est actuellement vide.", btn_return: "Retour au Catalogue", lbl_size: "Taille" },
-      es: { nav_catalogue: "Catálogo", cart_title: "Tu Carrito", summary_title: "Resumen del pedido", summary_total: "Total", btn_checkout: "Proceder al pago", empty_msg: "Tu carrito está actualmente vacío.", btn_return: "Volver al Catálogo", lbl_size: "Talla" }
-    };
+    function removeItem(id, size) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart = cart.filter(item => !(item.id === id && item.size === size));
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
 
-    function changeLanguage(lang) {
-      document.querySelectorAll('[data-translate]').forEach(el => {
-        const key = el.getAttribute('data-translate');
-        if (translations[lang]?.[key]) el.textContent = translations[lang][key];
-      });
-      document.getElementById('current-lang-label').textContent = `🌐 ${lang.toUpperCase()}`;
-      localStorage.setItem('preferred-lang', lang);
+    function checkout() {
+      alert("¡Gracias por tu compra simulada en L'Élégance Parisienne!");
+      localStorage.removeItem('cart');
       renderCart();
     }
 
     function renderCart() {
-      const lang = localStorage.getItem('preferred-lang') || 'fr';
       const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const lang = localStorage.getItem('preferred-lang') || 'es';
       const container = document.getElementById('cart-items-container');
-      const cartContent = document.getElementById('cart-content');
-      const emptyMessage = document.getElementById('empty-cart-message');
       
-      // Actualizar contador del Navbar
-      document.getElementById('cart-counter').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+      // Actualizar contador del navbar
+      const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cart-counter').textContent = totalItems;
 
-      if (cart.length === 0) {
-        cartContent.classList.add('hidden');
-        emptyMessage.classList.remove('hidden');
+      if(cart.length === 0) {
+        container.innerHTML = `
+          <div class="bg-white border border-stone-200 p-8 rounded-lg text-center text-stone-500 text-xs">
+            Tu bolsa de compras está vacía. <a href="catalogo.html" class="text-amber-800 font-bold underline ml-1">Volver al catálogo</a>
+          </div>
+        `;
+        document.getElementById('cart-subtotal').textContent = '0.00 €';
+        document.getElementById('cart-total').textContent = '0.00 €';
         return;
       }
 
-      cartContent.classList.remove('hidden');
-      emptyMessage.classList.add('hidden');
       container.innerHTML = '';
-      let totalPrice = 0;
+      let subtotal = 0;
 
-      cart.forEach((item, index) => {
-        // Buscamos el producto en nuestra DB global usando la clave 'key' o 'id'
-        const prodData = productsDB.find(p => p.id === item.key);
-        
-        // Si por algún motivo no existe en la DB, usamos datos de respaldo por seguridad
-        const name = prodData ? prodData[lang] : `Produit (${item.key})`;
-        const imgUrl = prodData ? prodData.img : "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=300&q=80";
-        
-        const itemTotal = item.price * item.quantity;
-        totalPrice += itemTotal;
+      cart.forEach(item => {
+        const prod = productsDB.find(p => p.id === item.id);
+        if(!prod) return;
+
+        const itemTotal = prod.price * item.quantity;
+        subtotal += itemTotal;
 
         container.innerHTML += `
-          <div class="bg-white border border-stone-200 p-4 rounded-xl flex gap-4 items-center">
-            <div class="w-20 h-24 bg-stone-100 rounded-lg overflow-hidden flex-shrink-0">
-              <img src="${imgUrl}" alt="${name}" class="w-full h-full object-cover">
-            </div>
-            <div class="flex-grow flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <article class="bg-white border border-stone-200 p-4 rounded-lg flex gap-4 items-center justify-between shadow-xs">
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-20 bg-stone-100 rounded-md overflow-hidden flex-shrink-0">
+                <img src="${prod.img}" alt="${prod.alt}" class="w-full h-full object-cover">
+              </div>
               <div>
-                <h3 class="text-xs font-semibold text-stone-900">${name}</h3>
-                <p class="text-[10px] text-stone-500 mt-0.5">${translations[lang].lbl_size}: <span class="font-bold text-stone-700">${item.size}</span></p>
-                <p class="text-xs font-bold text-stone-950 mt-1">${item.price.toFixed(2)} €</p>
-              </div>
-              <div class="flex items-center gap-4 justify-between sm:justify-end">
-                <div class="flex items-center border border-stone-200 rounded-md bg-stone-50">
-                  <button onclick="updateQuantity(${index}, -1)" class="w-7 py-1 text-xs font-bold text-stone-600 hover:text-stone-950 cursor-pointer">-</button>
-                  <span class="w-8 text-center text-xs font-semibold">${item.quantity}</span>
-                  <button onclick="updateQuantity(${index}, 1)" class="w-7 py-1 text-xs font-bold text-stone-600 hover:text-stone-950 cursor-pointer">+</button>
-                </div>
-                <button onclick="removeItem(${index})" class="text-stone-400 hover:text-red-600 transition-colors cursor-pointer p-1">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
-                </button>
+                <h3 class="text-xs font-semibold text-stone-900">${prod[lang]}</h3>
+                <p class="text-[10px] text-stone-500 mt-0.5">Talla: <span class="font-bold text-stone-700">${item.size}</span> | Unidades: <span class="font-bold text-stone-700">${item.quantity}</span></p>
+                <p class="text-xs font-bold text-stone-950 mt-1">${prod.price.toFixed(2)} €</p>
               </div>
             </div>
-          </div>
+            
+            <button type="button" onclick="removeItem('${item.id}', '${item.size}')" class="text-stone-400 hover:text-red-700 p-2 transition-colors cursor-pointer" aria-label="Eliminar ${prod[lang]} talla ${item.size} de la bolsa de compras">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
+            </button>
+          </article>
         `;
       });
 
-      document.getElementById('cart-total-price').textContent = `${totalPrice.toFixed(2)} €`;
-    }
-
-    function updateQuantity(index, amount) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart[index].quantity += amount;
-      if (cart[index].quantity < 1) cart[index].quantity = 1;
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
-    }
-
-    function removeItem(index) {
-      let cart = JSON.parse(localStorage.getItem('cart')) || [];
-      cart.splice(index, 1);
-      localStorage.setItem('cart', JSON.stringify(cart));
-      renderCart();
+      document.getElementById('cart-subtotal').textContent = `${subtotal.toFixed(2)} €`;
+      document.getElementById('cart-total').textContent = `${subtotal.toFixed(2)} €`;
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const lang = localStorage.getItem('preferred-lang') || 'fr';
-      changeLanguage(lang);
+      renderCart();
     });
   </script>
 </body>
