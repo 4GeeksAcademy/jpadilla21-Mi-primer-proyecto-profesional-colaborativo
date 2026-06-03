@@ -6,7 +6,10 @@
   
   <title>Tu Carrito de Compras | L'Élégance Parisienne</title>
   <meta name="description" content="Gestiona los artículos de tu bolsa de compras, revisa tu subtotal y finaliza tu orden en L'Élégance Parisienne.">
-  <meta name="robots" content="noindex, follow"> <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://potential-happiness-jr59gvr5vjpp3p575-8000.app.github.dev/carrito.html">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght=200..800&display=swap" rel="stylesheet">
@@ -17,16 +20,16 @@
 </head>
 <body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
 
-  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-xs">
     <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4" aria-label="Menú de navegación principal">
       <div class="flex-shrink-0">
-        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase">L'ÉLÉGANCE</a>
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase text-stone-950 focus:outline-2 focus:outline-stone-500 rounded-sm">L'ÉLÉGANCE</a>
       </div>
       <div class="flex items-center gap-6">
-        <a href="catalogo.html" class="text-stone-600 hover:text-stone-900 text-xs font-medium uppercase tracking-wider">Catálogo</a>
-        <a href="carrito.html" class="text-stone-950 font-bold transition-colors relative p-1" aria-current="page" aria-label="Carrito de compras activo">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
-          <span id="cart-counter" class="absolute -top-1 -right-1 bg-amber-700 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        <a href="catalogo.html" class="text-stone-600 hover:text-stone-950 text-xs font-semibold uppercase tracking-wider focus:outline-2 focus:outline-stone-500 p-1 rounded-sm">Catálogo</a>
+        <a href="carrito.html" class="text-stone-950 font-bold transition-colors relative p-2 rounded-sm focus:outline-2 focus:outline-stone-500" aria-current="page" aria-label="Carrito de compras activo">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+          <span id="cart-counter" class="absolute top-0 right-0 bg-stone-900 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
         </a>
       </div>
     </nav>
@@ -36,34 +39,34 @@
     <h1 class="font-serif text-2xl sm:text-3xl font-normal tracking-wide mb-8 text-stone-900 border-b border-stone-200 pb-4">Tu Bolsa de Compras</h1>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <section class="md:col-span-2 flex flex-col gap-4" id="cart-items-container" aria-label="Productos en tu carrito">
+      <section class="md:col-span-2 flex flex-col gap-4" id="cart-items-container" aria-label="Productos incluidos en tu carrito">
         </section>
 
-      <section class="bg-white border border-stone-200 p-6 rounded-lg h-fit flex flex-col gap-4 shadow-xs" aria-label="Resumen de facturación">
+      <section class="bg-white border border-stone-200 p-6 rounded-lg h-fit flex flex-col gap-4 shadow-xs" aria-label="Resumen de facturación de la compra">
         <h2 class="text-xs font-bold uppercase tracking-wider text-stone-700">Resumen del Pedido</h2>
-        <div class="h-[1px] bg-stone-200"></div>
+        <div class="h-[1px] bg-stone-200" aria-hidden="true"></div>
         <div class="flex justify-between items-center text-xs text-stone-600">
           <span>Subtotal</span>
           <span id="cart-subtotal" class="font-semibold text-stone-950">0.00 €</span>
         </div>
         <div class="flex justify-between items-center text-xs text-stone-600">
           <span>Envío</span>
-          <span class="text-green-700 font-medium">Gratuito</span>
+          <span class="text-green-700 font-semibold">Gratuito</span>
         </div>
-        <div class="h-[1px] bg-stone-200"></div>
+        <div class="h-[1px] bg-stone-200" aria-hidden="true"></div>
         <div class="flex justify-between items-center text-sm font-bold text-stone-900">
           <span>Total</span>
           <span id="cart-total">0.00 €</span>
         </div>
-        <button type="button" onclick="checkout()" class="w-full bg-stone-950 text-white text-xs font-semibold tracking-widest uppercase py-3 rounded-md hover:bg-stone-800 transition-colors mt-2 cursor-pointer">
+        <button type="button" onclick="goToCheckout()" class="w-full bg-stone-950 text-white text-xs font-semibold tracking-widest uppercase py-3 rounded-md hover:bg-stone-800 transition-colors mt-2 cursor-pointer focus:outline-2 focus:outline-offset-2 focus:outline-stone-950">
           Procesar Pago
         </button>
       </section>
     </div>
   </main>
 
-  <footer class="bg-stone-950 text-stone-400 text-xs py-6 text-center border-t border-stone-800">
-    <div>&copy; 2026 L'Élégance Parisienne. Todos los derechos reservados.</div>
+  <footer class="bg-stone-950 text-stone-400 text-xs py-8 text-center border-t border-stone-900">
+    <div class="max-w-7xl mx-auto px-4">&copy; 2026 L'Élégance Parisienne. Todos los derechos reservados.</div>
   </footer>
 
   <script>
@@ -81,10 +84,14 @@
       renderCart();
     }
 
-    function checkout() {
-      alert("¡Gracias por tu compra simulada en L'Élégance Parisienne!");
-      localStorage.removeItem('cart');
-      renderCart();
+    function goToCheckout() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        alert("Tu bolsa está vacía. Añade productos antes de pagar.");
+        return;
+      }
+      // REDIRECCIÓN DIRECTA SIN BORRAR EL CARRITO TODAVÍA
+      window.location.href = "checkout.html";
     }
 
     function renderCart() {
@@ -92,14 +99,13 @@
       const lang = localStorage.getItem('preferred-lang') || 'es';
       const container = document.getElementById('cart-items-container');
       
-      // Actualizar contador del navbar
       const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
       document.getElementById('cart-counter').textContent = totalItems;
 
       if(cart.length === 0) {
         container.innerHTML = `
-          <div class="bg-white border border-stone-200 p-8 rounded-lg text-center text-stone-500 text-xs">
-            Tu bolsa de compras está vacía. <a href="catalogo.html" class="text-amber-800 font-bold underline ml-1">Volver al catálogo</a>
+          <div class="bg-white border border-stone-200 p-8 rounded-lg text-center text-stone-500 text-xs font-medium">
+            Tu bolsa de compras está vacía. <a href="catalogo.html" class="text-stone-950 font-bold underline ml-1 focus:outline-1 focus:outline-stone-500 rounded-xs">Volver al catálogo</a>
           </div>
         `;
         document.getElementById('cart-subtotal').textContent = '0.00 €';
@@ -124,14 +130,14 @@
                 <img src="${prod.img}" alt="${prod.alt}" class="w-full h-full object-cover">
               </div>
               <div>
-                <h3 class="text-xs font-semibold text-stone-900">${prod[lang]}</h3>
+                <h3 class="text-xs font-semibold text-stone-900">${prod[lang] || prod['es']}</h3>
                 <p class="text-[10px] text-stone-500 mt-0.5">Talla: <span class="font-bold text-stone-700">${item.size}</span> | Unidades: <span class="font-bold text-stone-700">${item.quantity}</span></p>
                 <p class="text-xs font-bold text-stone-950 mt-1">${prod.price.toFixed(2)} €</p>
               </div>
             </div>
             
-            <button type="button" onclick="removeItem('${item.id}', '${item.size}')" class="text-stone-400 hover:text-red-700 p-2 transition-colors cursor-pointer" aria-label="Eliminar ${prod[lang]} talla ${item.size} de la bolsa de compras">
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
+            <button type="button" onclick="removeItem('${item.id}', '${item.size}')" class="text-stone-400 hover:text-red-700 p-2 transition-colors cursor-pointer focus:outline-2 focus:outline-stone-500 rounded-md" aria-label="Eliminar ${prod[lang] || prod['es']} talla ${item.size} del carrito">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0" /></svg>
             </button>
           </article>
         `;
