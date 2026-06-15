@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es" id="html-tag">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Detalle del Producto | L'Élégance Parisienne</title>
+  <meta name="description" content="Ver detalles del producto, seleccionar talla, cantidad y añadir al carrito de compras en L'Élégance Parisienne. Colección Otoño / Invierno 2026.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://potential-happiness-jr59gvr5vjpp3p575-8000.app.github.dev/producto.html">
+
+  <meta property="og:type" content="product">
+  <meta property="og:title" content="Detalle del Producto | L'Élégance Parisienne">
+  <meta property="og:description" content="Descubre nuestra prenda exclusiva de alta costura para la temporada 2026.">
+  <meta property="og:url" content="https://potential-happiness-jr59gvr5vjpp3p575-8000.app.github.dev/producto.html">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght=200..800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
+
+  <script type="application/ld+json" id="schema-product"></script>
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
+
+  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-xs">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4" aria-label="Menú de navegación principal">
+      <div class="flex-shrink-0">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase text-stone-950 focus:outline-2 focus:outline-stone-500 rounded-sm">L'ÉLÉGANCE</a>
+      </div>
+      <div class="flex items-center gap-6">
+        <a href="catalogo.html" class="text-stone-600 hover:text-stone-950 text-xs font-semibold uppercase tracking-wider focus:outline-2 focus:outline-stone-500 p-1 rounded-sm">Catálogo</a>
+        <a href="carrito.html" class="text-stone-600 hover:text-stone-950 transition-colors relative p-2 rounded-sm focus:outline-2 focus:outline-stone-500" aria-label="Ver 0 productos en el carrito de compras" id="cart-nav-link">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+          <span id="cart-counter" class="absolute top-0 right-0 bg-stone-900 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow max-w-5xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-12" id="product-detail-container">
+    <div class="text-center py-12 text-stone-500 font-medium">Cargando producto exclusivo...</div>
+  </main>
+
+  <footer class="bg-stone-950 text-stone-400 text-xs py-8 text-center border-t border-stone-900">
+    <div class="max-w-7xl mx-auto px-4">&copy; 2026 L'Élégance Parisienne. Todos los derechos reservados.</div>
+  </footer>
+
+  <script>
+    const productsDB = [
+      { id: "prod_2", price: 85.00, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=600&q=80", fr: "Montre Minimaliste de Luxe", es: "Reloj Minimalista de Lujo", cat: "Accessoires", alt: "Reloj de pulsera minimalista de lujo con correa de cuero" },
+      { id: "prod_3", price: 45.00, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80", fr: "Jean Bleu Classique", es: "Pantalón Denim Elegante", cat: "Pantalons", alt: "Pantalón de mezclilla azul de corte clásico premium" },
+      { id: "prod_4", price: 52.50, img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80", fr: "Baskets Élégantes Blanches", es: "Calzado Deportivo Casual", cat: "Chaussures", alt: "Zapatillas deportivas blancas de cuero de estilo urbano" },
+      { id: "prod_6", price: 110.00, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80", fr: "Blazer Décontracté Rose", es: "Pantalón Casual de Vestir Rosado", cat: "Chemises", alt: "Pantalón casual de vestir color rosado pastel con bolsillos holgados" }
+    ];
+
+    let currentQty = 1;
+
+    function getProductId() {
+      const params = new URLSearchParams(window.location.search);
+      return params.get('id') || 'prod_6';
+    }
+
+    function changeQty(amount) {
+      currentQty = Math.max(1, currentQty + amount);
+      const qtyInput = document.getElementById('quantity-input');
+      if(qtyInput) qtyInput.value = currentQty;
+    }
+
+    function addToCart(id) {
+      const sizeSelect = document.getElementById('size-select');
+      const selectedSize = sizeSelect ? sizeSelect.value : 'M';
+      
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cart.find(item => item.id === id && item.size === selectedSize);
+
+      if (existingItem) {
+        existingItem.quantity += currentQty;
+      } else {
+        cart.push({ id: id, quantity: currentQty, size: selectedSize });
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCounter();
+      alert("¡Producto añadido al carrito correctamente!");
+    }
+
+    function updateCartCounter() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const total = cart.reduce((sum, item) => sum + item.quantity, 0);
+      document.getElementById('cart-counter').textContent = total;
+      document.getElementById('cart-nav-link').setAttribute('aria-label', `Ver ${total} productos en el carrito de compras`);
+    }
+
+    function injectSchemaOrg(prod, lang) {
+      const schemaData = {
+        "@context": "https://schema.org",
+        "@type": "Product",
+        "name": prod[lang],
+        "image": [prod.img],
+        "description": prod.alt,
+        "sku": prod.id,
+        "offers": {
+          "@type": "Offer",
+          "url": window.location.href,
+          "priceCurrency": "EUR",
+          "price": prod.price,
+          "itemCondition": "https://schema.org/NewCondition",
+          "availability": "https://schema.org/InStock"
+        }
+      };
+      document.getElementById('schema-product').textContent = JSON.stringify(schemaData);
+    }
+
+    function renderDetail() {
+      const id = getProductId();
+      const prod = productsDB.find(p => p.id === id) || productsDB[3];
+      const lang = localStorage.getItem('preferred-lang') || 'es';
+      const container = document.getElementById('product-detail-container');
+      
+      document.title = `${prod[lang]} | L'Élégance Parisienne`;
+      injectSchemaOrg(prod, lang);
+
+      container.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start bg-white p-6 sm:p-10 rounded-xl border border-stone-200 shadow-xs">
+          <div class="bg-stone-100 aspect-[3/4] overflow-hidden rounded-lg">
+            <img src="${prod.img}" alt="${prod.alt}" class="w-full h-full object-cover" fetchpriority="high">
+          </div>
+          
+          <div class="flex flex-col gap-6">
+            <div>
+              <span class="text-[10px] uppercase font-bold tracking-widest text-stone-400">REF: ${prod.id.toUpperCase()}</span>
+              <h1 class="font-serif text-2xl sm:text-3xl font-normal tracking-wide mt-1 text-stone-900">${prod[lang]}</h1>
+              <p class="text-xl font-bold text-stone-950 mt-2">${prod.price.toFixed(2)} €</p>
+            </div>
+
+            <div class="h-[1px] bg-stone-200" aria-hidden="true"></div>
+
+            <div>
+              <label for="size-select" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-2">Seleccionar Talla</label>
+              <select id="size-select" class="w-full max-w-xs bg-white border border-stone-300 rounded-md p-2.5 text-xs text-stone-800 focus:outline-none focus:ring-1 focus:ring-stone-500">
+                <option value="S">S (Pequeña)</option>
+                <option value="M" selected>M (Mediana)</option>
+                <option value="L">L (Grande)</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="quantity-input" class="block text-xs font-semibold uppercase tracking-wider text-stone-700 mb-2">Cantidad</label>
+              <div class="flex items-center border border-stone-300 w-32 justify-between rounded-md bg-white overflow-hidden">
+                <button type="button" onclick="changeQty(-1)" class="px-3 py-2 text-sm text-stone-600 hover:bg-stone-100 font-bold transition-colors cursor-pointer" aria-label="Disminuir la cantidad de artículos">-</button>
+                <input type="number" id="quantity-input" value="1" min="1" readonly class="w-10 text-center text-xs font-bold bg-transparent border-none focus:outline-none text-stone-900">
+                <button type="button" onclick="changeQty(1)" class="px-3 py-2 text-sm text-stone-600 hover:bg-stone-100 font-bold transition-colors cursor-pointer" aria-label="Aumentar la cantidad de artículos">+</button>
+              </div>
+            </div>
+
+            <button type="button" onclick="addToCart('${prod.id}')" class="w-full bg-stone-950 text-white font-semibold text-xs tracking-widest uppercase py-4 rounded-md border border-stone-950 hover:bg-transparent hover:text-stone-950 transition-all duration-300 cursor-pointer shadow-xs mt-4 focus:outline-2 focus:outline-offset-2 focus:outline-stone-950">
+              Añadir Al Carrito
+            </button>
+          </div>
+        </div>
+      `;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      renderDetail();
+      updateCartCounter();
+    });
+  </script>
+</body>
+</html>

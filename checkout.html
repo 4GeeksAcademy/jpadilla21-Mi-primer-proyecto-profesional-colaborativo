@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es" id="html-tag">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Élégance Parisienne | Finaliser la Commande</title>
+  
+  <meta name="description" content="Procesa tu pago de forma segura en L'Élégance Parisienne.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="canonical" href="https://potential-happiness-jr59gvr5vjpp3p575-8000.app.github.dev/checkout.html">
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght=0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght=200..800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
+
+  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4" aria-label="Navegación del checkout">
+      <div class="flex-shrink-0">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase text-stone-950 focus:outline-2 focus:outline-stone-500 rounded-sm">L'ÉLÉGANCE</a>
+      </div>
+      
+      <div class="flex items-center gap-6">
+        <div class="relative inline-block text-left group">
+          <button type="button" id="language-menu-button" class="bg-white border border-stone-200 px-2.5 py-1.5 text-xs font-medium rounded-md cursor-pointer text-stone-700">
+            <span id="current-lang-label">🌐 FR</span>
+          </button>
+          <div class="origin-top-right absolute right-0 mt-1 w-28 rounded-md shadow-lg bg-white opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 border border-stone-100">
+            <div class="py-1">
+              <button type="button" onclick="changeLanguage('fr')" class="w-full text-left px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer text-stone-700">Français</button>
+              <button type="button" onclick="changeLanguage('es')" class="w-full text-left px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer text-stone-700">Español</button>
+            </div>
+          </div>
+        </div>
+        <span data-translate="secure_payment" class="text-xs font-bold tracking-wider text-stone-400 uppercase">Paiement Sécurisé</span>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow max-w-2xl w-full mx-auto px-4 py-12">
+    
+    <div class="flex items-center justify-center w-full max-w-md mx-auto mb-12 relative">
+      <div class="absolute left-0 right-0 top-1/2 -translate-y-1/2 h-[2px] bg-stone-200 z-0"></div>
+      <div class="flex justify-between w-full relative z-10">
+        <div id="step-dot-1" class="w-8 h-8 rounded-full bg-stone-900 text-white flex items-center justify-center text-xs font-bold ring-4 ring-white">1</div>
+        <div id="step-dot-2" class="w-8 h-8 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-xs font-bold ring-4 ring-white">2</div>
+        <div id="step-dot-3" class="w-8 h-8 rounded-full bg-stone-200 text-stone-500 flex items-center justify-center text-xs font-bold ring-4 ring-white">3</div>
+      </div>
+    </div>
+
+    <div class="bg-white border border-stone-200 rounded-lg p-6 sm:p-8 shadow-xs">
+      <form id="checkout-form" onsubmit="handleNextStep(event)" class="space-y-6">
+        
+        <div id="form-step-1" class="space-y-5">
+          <h2 data-translate="step1_title" class="font-serif text-xl font-bold text-stone-900 mb-4">1. Données Personnelles</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="input-firstname" data-translate="label_firstname" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Prénom</label>
+              <input type="text" id="input-firstname" required class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+            <div>
+              <label for="input-lastname" data-translate="label_lastname" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Nom</label>
+              <input type="text" id="input-lastname" required class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+          </div>
+          <div>
+            <label for="input-email" data-translate="label_email" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Email</label>
+            <input type="email" id="input-email" required class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+          </div>
+        </div>
+
+        <div id="form-step-2" class="space-y-5 hidden">
+          <h2 data-translate="step2_title" class="font-serif text-xl font-bold text-stone-900 mb-4">2. Adresse de Livraison</h2>
+          <div>
+            <label for="input-address" data-translate="label_address" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Adresse</label>
+            <input type="text" id="input-address" class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="input-city" data-translate="label_city" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Ville</label>
+              <input type="text" id="input-city" class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+            <div>
+              <label for="input-zip" data-translate="label_zip" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Code Postal</label>
+              <input type="text" id="input-zip" class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+          </div>
+        </div>
+
+        <div id="form-step-3" class="space-y-5 hidden">
+          <h2 data-translate="step3_title" class="font-serif text-xl font-bold text-stone-900 mb-4">3. Paiement</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label for="input-card" data-translate="label_card" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Numéro de Carte</label>
+              <input type="text" id="input-card" placeholder="4532 0123 4567 8910" maxlength="19" class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+            <div>
+              <label for="input-bank" data-translate="label_bank" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Nom de la Banque</label>
+              <input type="text" id="input-bank" placeholder="BNP Paribas, Santander..." class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <label for="input-expiry" data-translate="label_expiry" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Date d'Expiration (MM/AA)</label>
+              <input type="text" id="input-expiry" placeholder="MM/AA" maxlength="5" class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+            <div>
+              <label for="input-cvv" data-translate="label_cvv" class="block text-[10px] font-bold text-stone-400 uppercase tracking-wider mb-1.5">Code CVV / CVC</label>
+              <input type="password" id="input-cvv" placeholder="•••" maxlength="4" class="w-full bg-stone-50 border border-stone-200 rounded-md p-3 text-xs focus:outline-none focus:border-stone-400 text-stone-900">
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" id="submit-btn" class="w-full bg-stone-900 hover:bg-stone-800 text-white font-medium py-4 rounded-md text-xs uppercase tracking-widest transition-colors font-semibold cursor-pointer">
+          Continuer
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <footer class="bg-stone-950 text-stone-400 text-xs pt-12 pb-6 border-t border-stone-800 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <div><h4 class="text-white font-serif text-sm font-bold tracking-widest uppercase mb-3">L'ÉLÉGANCE</h4></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase" data-translate="footer_cat">Catégories</h4></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase">Legal</h4></div>
+      <div><h4 class="text-white font-semibold mb-3 uppercase">Contacto</h4><p class="text-stone-500">support@lelegance.com</p></div>
+    </div>
+  </footer>
+
+  <script>
+    const translations = {
+      fr: {
+        secure_payment: "Paiement Sécurisé",
+        step1_title: "1. Données Personnelles",
+        label_firstname: "Prénom",
+        label_lastname: "Nom",
+        label_email: "Email",
+        step2_title: "2. Adresse de Livraison",
+        label_address: "Adresse",
+        label_city: "Ville",
+        label_zip: "Code Postal",
+        step3_title: "3. Paiement",
+        label_card: "Numéro de Carte",
+        label_bank: "Nom de la Banque",
+        label_expiry: "Date d'Expiration (MM/AA)",
+        label_cvv: "Code CVV / CVC",
+        btn_continue: "Continuer",
+        btn_finish: "Finaliser la Commande",
+        footer_cat: "Catégories",
+        success_alert: "Merci pour votre achat ! Votre commande a été traitée avec succès."
+      },
+      es: {
+        secure_payment: "Pago Seguro",
+        step1_title: "1. Datos Personales",
+        label_firstname: "Nombre",
+        label_lastname: "Apellido",
+        label_email: "Correo Electrónico",
+        step2_title: "2. Dirección de Envío",
+        label_address: "Dirección",
+        label_city: "Ciudad",
+        label_zip: "Código Postal",
+        step3_title: "3. Pago",
+        label_card: "Número de Tarjeta",
+        label_bank: "Nombre del Banco",
+        label_expiry: "Fecha de Vencimiento (MM/AA)",
+        label_cvv: "Código CVV / CVC",
+        btn_continue: "Continuar",
+        btn_finish: "Finalizar Pedido",
+        footer_cat: "Categorías",
+        success_alert: "¡Gracias por su compra! Su pedido ha sido procesado con éxito."
+      }
+    };
+
+    let currentStep = 1;
+
+    function changeLanguage(lang) {
+      localStorage.setItem('preferred-lang', lang);
+      document.getElementById('current-lang-label').textContent = `🌐 ${lang.toUpperCase()}`;
+      document.getElementById('html-tag').setAttribute('lang', lang);
+      
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang]?.[key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+
+      const btn = document.getElementById('submit-btn');
+      if (currentStep < 3) {
+        btn.textContent = translations[lang].btn_continue;
+      } else {
+        btn.textContent = translations[lang].btn_finish;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const savedLang = localStorage.getItem('preferred-lang') || 'fr';
+      changeLanguage(savedLang);
+
+      // Máscaras seguras asignadas dentro del load
+      const expiryInput = document.getElementById('input-expiry');
+      if (expiryInput) {
+        expiryInput.addEventListener('input', (e) => {
+          let value = e.target.value.replace(/\D/g, '');
+          if (value.length > 2) {
+            e.target.value = value.substring(0, 2) + '/' + value.substring(2, 4);
+          } else {
+            e.target.value = value;
+          }
+        });
+      }
+
+      const cardInput = document.getElementById('input-card');
+      if (cardInput) {
+        cardInput.addEventListener('input', (e) => {
+          let value = e.target.value.replace(/\s+/g, '').replace(/\D/g, '');
+          let parts = [];
+          for (let i = 0; i < value.length; i += 4) {
+            parts.push(value.substring(i, i + 4));
+          }
+          e.target.value = parts.length > 0 ? parts.join(' ') : value;
+        });
+      }
+    });
+
+    function handleNextStep(event) {
+      event.preventDefault();
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+
+      if (currentStep === 1) {
+        document.getElementById('form-step-1').classList.add('hidden');
+        document.getElementById('form-step-2').classList.remove('hidden');
+        
+        document.getElementById('input-address').required = true;
+        document.getElementById('input-city').required = true;
+        document.getElementById('input-zip').required = true;
+        
+        document.getElementById('step-dot-2').classList.remove('bg-stone-200', 'text-stone-500');
+        document.getElementById('step-dot-2').classList.add('bg-stone-900', 'text-white');
+        
+        currentStep = 2;
+      } else if (currentStep === 2) {
+        document.getElementById('form-step-2').classList.add('hidden');
+        document.getElementById('form-step-3').classList.remove('hidden');
+        
+        document.getElementById('input-card').required = true;
+        document.getElementById('input-bank').required = true;
+        document.getElementById('input-expiry').required = true;
+        document.getElementById('input-cvv').required = true;
+        
+        document.getElementById('step-dot-3').classList.remove('bg-stone-200', 'text-stone-500');
+        document.getElementById('step-dot-3').classList.add('bg-stone-900', 'text-white');
+        
+        document.getElementById('submit-btn').textContent = translations[lang].btn_finish;
+        currentStep = 3;
+      } else if (currentStep === 3) {
+        alert(translations[lang].success_alert);
+        localStorage.removeItem('cart');
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+</body>
+</html>

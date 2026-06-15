@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fr" id="html-tag">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>L'Élégance Parisienne | Catalogue</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .font-serif { font-family: 'Playfair Display', serif; }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-900 flex flex-col min-h-screen">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 bg-white border-b border-stone-200 shadow-sm">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-4">
+      <div class="flex-shrink-0">
+        <a href="index.html" class="font-serif text-2xl font-bold tracking-widest uppercase">L'ÉLÉGANCE</a>
+      </div>
+      <div class="hidden md:flex flex-1 max-w-md mx-4">
+        <div class="relative w-full">
+          <input type="text" id="search-input" oninput="filterProducts()" data-translate-placeholder="search_placeholder" placeholder="Rechercher des produits..." class="w-full bg-stone-100 border border-stone-200 pl-4 pr-10 py-2 text-xs rounded-md focus:outline-none focus:border-stone-400">
+        </div>
+      </div>
+      <div class="flex items-center gap-6">
+        <div class="relative inline-block text-left group">
+          <button type="button" class="inline-flex justify-center items-center gap-1 bg-white text-stone-600 hover:text-stone-900 border border-stone-200 px-2.5 py-1.5 text-xs font-medium rounded-md transition-colors">
+            <span id="current-lang-label">🌐 FR</span>
+          </button>
+          <div class="origin-top-right absolute right-0 mt-1 w-28 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <div class="py-1">
+              <button type="button" onclick="changeLanguage('fr')" class="w-full text-left text-stone-900 block px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Français</button>
+              <button type="button" onclick="changeLanguage('es')" class="w-full text-left text-stone-600 block px-4 py-2 text-xs hover:bg-stone-50 cursor-pointer">Español</button>
+            </div>
+          </div>
+        </div>
+        <a href="catalogo.html" data-translate="nav_catalogue" class="text-stone-950 border-b border-stone-950 text-xs font-medium uppercase tracking-wider">Catalogue</a>
+        <a href="carrito.html" class="text-stone-600 hover:text-stone-900 transition-colors relative p-1">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z" /></svg>
+          <span id="cart-counter" class="absolute -top-1 -right-1 bg-amber-700 text-white text-[9px] w-4 h-4 rounded-full flex items-center justify-center font-bold">0</span>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="text-center mb-12">
+      <h1 data-translate="catalog_title" class="font-serif text-3xl sm:text-4xl font-normal tracking-wide mb-2">Notre Collection</h1>
+      <p data-translate="catalog_subtitle" class="text-xs text-stone-500 uppercase tracking-widest">Découvrez le raffinement parisien</p>
+    </div>
+
+    <!-- FILTROS -->
+    <div class="flex flex-wrap justify-center gap-2 mb-10 border-b border-stone-200 pb-6" id="category-filters">
+      <button onclick="filterCategory('all')" id="filter-all" data-translate="cat_all" class="px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md transition-colors cursor-pointer">Tout</button>
+      <button onclick="filterCategory('Accessoires')" id="filter-Accessoires" data-translate="cat_acc" class="px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md transition-colors cursor-pointer">Accesorios</button>
+      <button onclick="filterCategory('Pantalons')" id="filter-Pantalons" data-translate="cat_pants" class="px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md transition-colors cursor-pointer">Pantalones</button>
+      <button onclick="filterCategory('Chaussures')" id="filter-Chaussures" data-translate="cat_shoes" class="px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md transition-colors cursor-pointer">Calzado</button>
+      <button onclick="filterCategory('Chemises')" id="filter-Chemises" data-translate="cat_shirts" class="px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md transition-colors cursor-pointer">Prendas Superiores</button>
+    </div>
+
+    <!-- REJILLA -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="catalog-container"></div>
+
+    <div id="empty-catalog-message" class="hidden text-center py-20">
+      <p data-translate="no_products" class="text-sm text-stone-500 font-medium">Aucun produit ne correspond à votre recherche.</p>
+    </div>
+  </main>
+
+  <!-- POPUP NOTIFICACIÓN -->
+  <div id="cart-popup" class="fixed bottom-5 right-5 bg-stone-900 text-white px-6 py-4 shadow-2xl transform translate-y-20 opacity-0 transition-all duration-300 z-50 flex flex-col gap-1 min-w-[280px] rounded-md">
+    <p data-translate="popup_success" class="font-bold text-xs text-emerald-400">✓ Article ajouté!</p>
+    <p id="popup-item-name" class="text-xs text-stone-300 font-medium"></p>
+  </div>
+
+  <footer class="bg-stone-950 text-stone-400 text-xs py-6 text-center border-t border-stone-800 animate-none">
+    <div>&copy; 2026 L'Élégance Parisienne. All rights reserved.</div>
+  </footer>
+
+  <script>
+    // MISMA BASE DE DATOS EXACTA
+    const productsDB = [
+      { id: "prod_2", price: 85.00, img: "https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?auto=format&fit=crop&w=600&q=80", fr: "Montre Minimaliste", es: "Reloj Minimalista de Lujo", cat: "Accessoires" },
+      { id: "prod_3", price: 45.00, img: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=600&q=80", fr: "Jean Bleu Classique", es: "Pantalón Denim Elegante", cat: "Pantalons" },
+      { id: "prod_4", price: 52.50, img: "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80", fr: "Baskets Élégantes", es: "Calzado Deportivo Casual", cat: "Chaussures" },
+      { id: "prod_6", price: 110.00, img: "https://images.unsplash.com/photo-1591047139829-d91aecb6caea?auto=format&fit=crop&w=600&q=80", fr: "Blazer Casual Moderne", es: "Chaqueta Casual Elegante", cat: "Chemises" }
+    ];
+
+    const translations = {
+      fr: { nav_catalogue: "Catalogue", search_placeholder: "Rechercher...", catalog_title: "Notre Collection", catalog_subtitle: "Découvrez le raffinement parisien", cat_all: "Tout", cat_acc: "Accessoires", cat_pants: "Pantalons", cat_shoes: "Chaussures", cat_text: "Prendas", cat_shirts: "Hauts", btn_add: "Ajouter au panier", popup_success: "✓ Article ajouté!", no_products: "Aucun produit trouvé." },
+      es: { nav_catalogue: "Catálogo", search_placeholder: "Buscar productos...", catalog_title: "Nuestra Colección", catalog_subtitle: "Descubre el refinamiento parisino", cat_all: "Todo", cat_acc: "Accesorios", cat_pants: "Pantalones", cat_shoes: "Calzado", cat_shirts: "Camisas/Abrigos", btn_add: "Añadir al carrito", popup_success: "✓ ¡Artículo añadido!", no_products: "Ningún producto coincide." }
+    };
+
+    let currentCategory = 'all';
+
+    function changeLanguage(lang) {
+      document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+        if (translations[lang]?.[key]) el.textContent = translations[lang][key];
+      });
+      document.getElementById('current-lang-label').textContent = `🌐 ${lang.toUpperCase()}`;
+      localStorage.setItem('preferred-lang', lang);
+      filterProducts();
+    }
+
+    function updateCartCounter() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      document.getElementById('cart-counter').textContent = cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function filterCategory(category) {
+      currentCategory = category;
+      const buttons = document.querySelectorAll('#category-filters button');
+      buttons.forEach(btn => {
+        btn.className = "px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md bg-white border border-stone-200 text-stone-600 hover:text-stone-900 transition-colors cursor-pointer";
+      });
+      const activeBtn = document.getElementById(`filter-${category}`);
+      if (activeBtn) activeBtn.className = "px-4 py-2 text-xs uppercase tracking-wider font-medium rounded-md bg-stone-900 text-white transition-colors cursor-pointer";
+      filterProducts();
+    }
+
+    function filterProducts() {
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+      const searchQuery = document.getElementById('search-input').value.toLowerCase();
+      const container = document.getElementById('catalog-container');
+      const emptyMessage = document.getElementById('empty-catalog-message');
+      
+      container.innerHTML = '';
+      
+      const filtered = productsDB.filter(prod => {
+        const matchesCategory = (currentCategory === 'all' || prod.cat === currentCategory);
+        const matchesSearch = prod[lang].toLowerCase().includes(searchQuery);
+        return matchesCategory && matchesSearch;
+      });
+
+      if (filtered.length === 0) {
+        emptyMessage.classList.remove('hidden');
+      } else {
+        emptyMessage.classList.add('hidden');
+        filtered.forEach(prod => {
+          container.innerHTML += `
+            <div class="bg-white border border-stone-200 p-4 rounded-lg shadow-xs flex flex-col justify-between">
+              <a href="producto.html?id=${prod.id}">
+                <div class="bg-stone-100 aspect-[3/4] overflow-hidden rounded-md mb-3">
+                  <img src="${prod.img}" alt="${prod[lang]}" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-xs font-semibold text-stone-900 truncate">${prod[lang]}</h3>
+                <p class="text-xs font-bold text-stone-950 mt-1">${prod.price.toFixed(2)} €</p>
+              </a>
+              <button onclick="addToCart('${prod.id}', ${prod.price})" class="w-full mt-3 bg-stone-900 text-white text-[10px] py-2 uppercase tracking-wider rounded-md hover:bg-amber-700 transition-colors cursor-pointer">${translations[lang].btn_add}</button>
+            </div>
+          `;
+        });
+      }
+    }
+
+    function addToCart(productKey, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existing = cart.find(item => item.key === productKey);
+      if (existing) { existing.quantity += 1; } else { cart.push({ key: productKey, price: price, quantity: 1, size: 'M' }); }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      updateCartCounter();
+      const currentLang = localStorage.getItem('preferred-lang') || 'fr';
+      const targetProd = productsDB.find(p => p.id === productKey);
+      showPopup(targetProd ? targetProd[currentLang] : productKey);
+    }
+
+    function showPopup(name) {
+      document.getElementById('popup-item-name').textContent = name;
+      const p = document.getElementById('cart-popup');
+      p.classList.remove('translate-y-20', 'opacity-0');
+      p.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => { p.classList.remove('translate-y-0', 'opacity-100'); p.classList.add('translate-y-20', 'opacity-0'); }, 3000);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const lang = localStorage.getItem('preferred-lang') || 'fr';
+      changeLanguage(lang);
+      updateCartCounter();
+      filterCategory('all');
+    });
+  </script>
+</body>
+</html>
